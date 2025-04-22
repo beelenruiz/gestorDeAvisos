@@ -1,0 +1,36 @@
+.scroll-layout {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .carousel {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    width: 90vw;
+    border-radius: 10px;
+    margin: auto;
+  }
+  
+  .content {
+    display: flex;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .content li {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+  }
+  
+  .content img {
+    height: 400px;
+    width: 942px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  
