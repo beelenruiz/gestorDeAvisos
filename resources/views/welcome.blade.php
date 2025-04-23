@@ -1,3 +1,7 @@
+@push('styles')
+   <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+@endpush
+
 <x-app-layout>
    <div>
       <div>
