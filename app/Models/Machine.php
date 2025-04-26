@@ -11,7 +11,7 @@ class Machine extends Model
     /** @use HasFactory<\Database\Factories\MachineFactory> */
     use HasFactory;
 
-    protected $fillable = ['name', 'color', 'n_serial', 'type', 'company_id'];
+    protected $fillable = ['name', 'color', 'n_serial', 'type', 'image', 'company_id'];
 
     //relacion 1:n con notifications
     public function notifications(): HasMany{

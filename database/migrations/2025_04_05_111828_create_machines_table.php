@@ -17,6 +17,7 @@ return new class extends Migration
             $table -> boolean('color');
             $table -> integer('n_serial');
             $table -> string('type');
+            $table -> string('image');
             $table -> foreignId('company_id') -> constrained() -> onDelete('cascade');
             $table->timestamps();
         });

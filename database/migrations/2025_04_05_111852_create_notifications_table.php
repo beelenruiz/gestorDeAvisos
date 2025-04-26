@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table -> string('state') -> default('procesando');
+            $table -> enum('state', ['procesando', 'aceptada', 'cancelada', 'en espera', 'completada']) -> default('procesando');
             $table -> string('description');
             $table -> foreignId('company_id') -> constrained() -> onDelete('cascade');
             //$table -> foreignId('machine_id') -> constrained() -> onDelete('cascade');
