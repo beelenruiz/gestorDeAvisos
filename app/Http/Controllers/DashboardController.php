@@ -26,11 +26,4 @@ class DashboardController extends Controller
 
         return view('companies.machines', compact('machines'));
     }
-
-    /* boton que envia a la vista de mis pedidos */
-    public function orders(){
-        $orders = Auth::user() -> orders;
-
-        return view('livewire.companies.orders', compact('orders'));
-    }
 }

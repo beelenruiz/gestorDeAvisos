@@ -5,7 +5,7 @@
 <x-app-layout>
    <div>
       <div>
-         <img style="margin: auto; height: 150;margin-bottom: 15;" src="{{Storage::url('images/image.png')}}">
+         <img style="margin: auto; height: 150; margin-bottom: 15;" src="{{Storage::url('images/image.png')}}">
       </div>
 
       <div class="scroll-layout">

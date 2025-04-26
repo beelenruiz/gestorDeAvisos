@@ -1,8 +1,35 @@
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/cards.css') }}">
+@endpush
+
 <x-app-layout>
-    @foreach ($machines as $item)
-        <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$item -> name}}</h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-        </a>
-    @endforeach
+    <div class="title">
+        <h1><i class="fa-solid fa-star"></i>MAQUINAS<i class="fa-solid fa-star"></i></h1>
+        <div>
+            <a href="{{route('notifications')}}"><x-button >mis avisos</x-button></a>
+        </div>
+    </div>
+
+    <div class="content">
+        @foreach ($machines as $item)
+        <div class="card">
+            <img src="{{Storage::url($item -> image)}}" alt="{{$item -> name}}">
+            <div class="card-content">
+                <h1>{{$item -> name}}</h1>
+                <div class="info-machine">
+                    <section> {{$item -> type}} </section>
+                    @if ($item -> color)
+                        <section> color </section>
+                    @else
+                        <section> blanco/negro </section>
+                    @endif
+                </div>
+                <p> {{$item -> n_serial}} </p>
+                <div class="button-create-notification">
+                    @livewire('companies.create-notifications')
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
 </x-app-layout>

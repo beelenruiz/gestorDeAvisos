@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Livewire\Articles;
+use App\Livewire\Companies\CreateNotifications;
+use App\Livewire\Companies\Orders;
+use App\Livewire\Companies\Notifications;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,10 +20,13 @@ Route::middleware([
 
     // rutas para companies -----------------------------------------------------------------
     Route::get('/machines', [DashboardController::class, 'machines'])->name('machines');
-    Route::get('/orders', [DashboardController::class, 'orders'])->name('orders');
-    Route::get('/notifications', [DashboardController::class, 'notifications'])->name('notifications');
+    Route::get('orders', Orders::class) -> name('orders');
+    Route::get('notifications', Notifications::class) -> name('notifications');
 
 
     // vista articulos para tienda -----------------------------------------------------------
     Route::get('articles', Articles::class) -> name('articles');
+    
+
+    Route::get('/notifications/create', CreateNotifications::class) -> name('notifications.create');
 });

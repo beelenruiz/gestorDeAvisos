@@ -1,0 +1,57 @@
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 80%;
+    margin: auto;
+    margin-top: 2.5rem;
+    box-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    text-align: center;
+    min-width: 1000px;
+}
+
+table thead {
+    background-color: #531919;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 0.25rem;
+}
+
+table tbody td, table thead th {
+    padding: 1rem 1.5rem;
+    white-space: nowrap;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f4f6f7;
+}
+
+table tbody tr:hover {
+    background-color: #D9D9D9;
+}
+
+table tbody tr {
+    border-top: 1px solid #D9D9D9;
+}
+
+
+/* para el estado de los pedidos ----------------------------------------------------------------- */
+.state {
+    height: 10px;
+    width: 10px;
+    border-radius: 100%; 
+    margin-right: 0.5rem; 
+    display: inline-block;
+}
+
+
+/* botones en caso de que el estado sea pendiente ------------------------------------------------ */
+.botones {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}

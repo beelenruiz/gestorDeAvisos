@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" style="background-color: #550e23; height: 60px;">
+<nav x-data="{ open: false }" style="background-color: #551919; height: 60px;">
     <!-- Primary Navigation Menu -->
     <div class="mx-auto" style="width: 80%;">
         <div class="flex items-center justify-between" style="height: 60px;">
@@ -14,6 +14,10 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('articles') }}" :active="request()->routeIs('articles')">
+                        {{ __('articles') }}
                     </x-nav-link>
                 </div>
             </div>

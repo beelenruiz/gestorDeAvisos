@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    min-width: 360px;
+}
+
+
+/* titulos grandes ----------------------------------------------------------------------------------- */
+.title {
+    padding-top: 2.5rem;
+}
+
+.title h1 {
+    color: #531919;
+    font-weight: bold;
+    font-size: clamp(2.25rem, 5vw, 3.1875rem);
+    text-align: center;
+    white-space: nowrap
+}
+
+.title h1 i {
+    padding: 0 1.25rem;
+}
+
+@media (max-width: 900px) {
+    .title {
+        padding-top: 2rem;
+    }
+}
+
+@media (max-width: 550px) {
+    .title {
+        padding-top: 1.5rem;
+    }
+}
