@@ -5,6 +5,7 @@ use App\Livewire\Articles;
 use App\Livewire\Companies\CreateNotifications;
 use App\Livewire\Companies\Orders;
 use App\Livewire\Companies\Notifications;
+use App\Livewire\Companies\VisualizerOrder;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,7 +21,7 @@ Route::middleware([
 
     // rutas para companies -----------------------------------------------------------------
     Route::get('/machines', [DashboardController::class, 'machines'])->name('machines');
-    Route::get('orders', Orders::class) -> name('orders');
+    Route::get('commpanies/orders', Orders::class) -> name('orders');
     Route::get('notifications', Notifications::class) -> name('notifications');
 
 
@@ -28,5 +29,10 @@ Route::middleware([
     Route::get('articles', Articles::class) -> name('articles');
     
 
+    // ruta para crear avisos 
     Route::get('/notifications/create', CreateNotifications::class) -> name('notifications.create');
+
+
+    // ruta para visualizar y editar pedidos
+    Route::get('/companies/orders/visualizer-order/{id}', VisualizerOrder::class) -> name('visualizer-order');
 });

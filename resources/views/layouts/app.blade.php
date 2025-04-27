@@ -15,6 +15,9 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- CDn SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -50,23 +53,70 @@
 
     @livewireScripts
     <script>
+        // alerta confifmDelete ---------------------------------------------------------------------------
+        Livewire.on('onCancelOrder', id => {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, cancel it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.dispatchTo('companies.orders', 'yesCancel', id)
+                }
+            });
+        });
+
+        Livewire.on('onDeleteArticle', id => {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, cancel it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.dispatchTo('companies.visualizer-order', 'yesDelete', id)
+                }
+            });
+        });
+
+        Livewire.on('message', txt => {
+            Swal.fire({
+                icon: "success",
+                title: txt,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        })
+    </script>
+
+    <script>
+        // carrousel --------------------------------------------------------------------------------------
         const carousel = document.querySelector('.carousel');
         const leftBtn = document.querySelector('.scroll-btn.left');
         const rightBtn = document.querySelector('.scroll-btn.right');
 
-        leftBtn.addEventListener('click', () => {
-            carousel.scrollBy({
-                left: -950,
-                behavior: 'smooth'
+        if (carousel && leftBtn && rightBtn) {
+            leftBtn.addEventListener('click', () => {
+                carousel.scrollBy({
+                    left: -950,
+                    behavior: 'smooth'
+                });
             });
-        });
 
-        rightBtn.addEventListener('click', () => {
-            carousel.scrollBy({
-                left: 950,
-                behavior: 'smooth'
+            rightBtn.addEventListener('click', () => {
+                carousel.scrollBy({
+                    left: 950,
+                    behavior: 'smooth'
+                });
             });
-        });
+        }
     </script>
 </body>
 

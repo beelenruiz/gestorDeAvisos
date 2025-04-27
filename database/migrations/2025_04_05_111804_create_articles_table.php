@@ -21,6 +21,7 @@ return new class extends Migration
             $table -> integer('stock');
             $table -> json('images');
             $table -> foreignId('category_id') -> constrained() -> onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
