@@ -11,7 +11,7 @@ class Notification extends Model
     /** @use HasFactory<\Database\Factories\NotificationFactory> */
     use HasFactory;
 
-    protected $fillable = ['state', 'description', 'company_id'];
+    protected $fillable = ['state', 'description', 'company_id', 'machine_id'];
 
     //relacion n:1 con machine
     public function machine(): BelongsTo{

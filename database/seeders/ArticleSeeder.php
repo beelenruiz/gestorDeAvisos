@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Article;
 use App\Models\Cart;
+use App\Models\Color;
 use App\Models\Order;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,14 +22,18 @@ class ArticleSeeder extends Seeder
 
         $orders = Order::pluck('id') -> toArray();
 
+        $colors = Color::pluck('id') -> toArray();
+
         foreach ($articles as $article){
             shuffle($carts);
             shuffle($orders);
+            shuffle($colors);
             $article -> carts() -> attach($this -> getRandomArrayId($carts), [
                 'quantity' => rand(1, 5),
                 'price' => $article -> price,
             ]);
             $article -> orders() -> attach($this -> getRandomArrayId($orders));
+            $article -> colors() -> attach($this -> getRandomArrayId($colors));
         }
     }
 

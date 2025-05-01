@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <div class="content">
+    <div class="cards">
         @foreach ($machines as $item)
         <div class="card">
             <img src="{{Storage::url($item -> image)}}" alt="{{$item -> name}}">

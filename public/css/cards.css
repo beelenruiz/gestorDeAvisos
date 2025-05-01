@@ -18,24 +18,71 @@
 }
 
 
-/* disposicion de las tarjetas usando grid ----------------------------------------------------------- */
+/* disposicion de la pagina */
 .content {
+    display: flex;
+}
+
+
+/* filtro de la vista livewire.articles */
+.filter {
+    padding: 2.5rem 0 0 1.5rem;
+    width: 25%;
+    font-size: 1rem;
+}
+
+.filter-secction {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #531919;
+    border-radius: 1rem;
+    padding: 1rem 0 1rem 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.filter-secction p {
+    margin-bottom: 0.5rem;
+    color: #531919;
+    font-weight: bold;
+}
+
+.filter form input[type="search"] {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.75rem;
+}
+  
+.filter-option {
+    padding: 0.25rem 0.75rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.filter-option input[type="checkbox"] {
+    outline: none;
+    box-shadow: none;
+}
+
+
+/* disposicion de las tarjetas usando grid ----------------------------------------------------------- */
+.cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr));
     justify-content: space-between;
-    padding: 2.5rem 4.0625rem;
+    padding: 2.5rem 3rem 2.5rem 2rem;
     gap: 2.5rem;
+    width: 100%;
 }
 
 @media (max-width: 900px) {
-    .content {
+    .cards {
         padding: 2rem 2.5rem;
         gap: 2rem;
     }
 }
 
 @media (max-width: 550px) {
-    .content {
+    .cards {
         padding: 1.5rem;
         gap: 1.5rem;
     }

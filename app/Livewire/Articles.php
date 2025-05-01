@@ -3,14 +3,37 @@
 namespace App\Livewire;
 
 use App\Models\Article;
+use App\Models\Category;
+use App\Models\Color;
 use Livewire\Component;
 
 class Articles extends Component
 {
+    public string $buscar = '';
+
+    public $selectedCategories = [];
+    public $selectedColors = [];
+
     public function render()
     {
-        $articles = Article::get();
+        $articles = Article::with('colors')
+        -> where(function($q){
+            $q -> where('name', 'like', "%{$this -> buscar}%")
+            -> orWhere('brand', 'like', "%{$this -> buscar}%");
+        })
+        -> when(!empty($this -> selectedCategories), function ($query) {
+            $query -> whereIn('category_id', $this -> selectedCategories);
+        })
+        -> when(!empty($this -> selectedColors), function ($query) {
+            $query -> whereHas('colors', function ($q) {
+                $q -> whereIn('colors.id', $this -> selectedColors);
+            });
+        })
+        -> get();
 
-        return view('livewire.articles', compact('articles'));
+        $categories = Category::get();
+        $colors = Color::get();
+
+        return view('livewire.articles', compact('articles', 'categories', 'colors'));
     }
 }

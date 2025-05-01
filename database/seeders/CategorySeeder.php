@@ -18,7 +18,7 @@ class CategorySeeder extends Seeder
              'description' => 'Disponemos de una amplia variedad de sillas de oficina que destacan por su comodidad y adaptabilidad a las necesidades del usuario. Todas estas sillas están fabricadas con materiales de primera calidad y su diseño garantiza el bienestar de las personas.  ',
               'icon' => 'images/iconsCategories/silla-de-oficina.png'
             ],
-            ['name' => 'silas de colectividades',
+            ['name' => 'sillas de colectividades',
              'description' => ' Todas nuestras sillas están diseñadas para ofrecer el máximo confort a sus usuarios. Además, destacan por su versatilidad y polivalencia. Cabe mencionar que todas estas sillas están hechas de materiales resistentes y ligeros para poder darles un uso tanto interior como exterior y ofrecen la posibilidad de transportarlas y almacenarlas de forma sencilla.',
               'icon' => 'images/iconsCategories/silla-plegable.png'
             ],

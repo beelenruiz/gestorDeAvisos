@@ -16,7 +16,7 @@ return new class extends Migration
             $table -> enum('state', ['procesando', 'aceptada', 'cancelada', 'en espera', 'completada']) -> default('procesando');
             $table -> string('description');
             $table -> foreignId('company_id') -> constrained() -> onDelete('cascade');
-            //$table -> foreignId('machine_id') -> constrained() -> onDelete('cascade');
+            $table -> foreignId('machine_id') -> constrained() -> onDelete('cascade');
             //$table -> foreignId('worker_id') -> constrained() -> onDelete('cascade');
             $table->timestamps();
         });

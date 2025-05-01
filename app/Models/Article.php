@@ -14,10 +14,9 @@ class Article extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['name', 'description', 'colors', 'brand', 'price', 'stock', 'images', 'category_id'];
+    protected $fillable = ['name', 'description', 'brand', 'price', 'stock', 'images', 'category_id'];
 
     protected $casts = [
-        'colors' => 'array',
         'images' => 'array'
     ];
 
@@ -37,5 +36,10 @@ class Article extends Model
     // relacion n:1 con category
     public function category(): BelongsTo {
         return $this  -> belongsTo(Category::class);
+    }
+
+    // relacion n:m con colors
+    public function colors(): BelongsToMany {
+        return $this -> belongsToMany(Color::class);
     }
 }

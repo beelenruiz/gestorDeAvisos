@@ -31,9 +31,10 @@ class DatabaseSeeder extends Seeder
 
         Order::factory(10) ->create();
         Cart::factory(7) -> create();
-        Notification::factory(10) -> create();
         Machine::factory(10) -> create();
+        Notification::factory(10) -> create();
 
+        $this -> call(ColorSeeder::class);
         $this -> call(ArticleSeeder::class);
 
 
