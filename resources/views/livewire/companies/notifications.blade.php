@@ -10,6 +10,9 @@
         </div>
     </div>
 
+    @if (!count($notifications))
+        <x-self.message><i class="fa-solid fa-face-smile-wink" style="margin-right: 0.5rem;"></i>Parece que no has tenido ningun problema... ¿o si?</x-self.message>
+    @else
     <div class="table-container">
         <table cellspacing="20">
             <thead>
@@ -53,4 +56,5 @@
             </tbody>
         </table>
     </div>
+    @endif
 </div>

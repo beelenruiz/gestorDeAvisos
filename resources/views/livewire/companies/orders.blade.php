@@ -7,6 +7,9 @@
         <h1><i class="fa-solid fa-star"></i>PEDIDOS<i class="fa-solid fa-star"></i></h1>
     </div>
 
+    @if (!count($orders))
+        <x-self.message><i class="fa-solid fa-heart-crack" style="margin-right: 0.5rem;"></i>¡Ups! Aún no has realizado ningún pedido. ¿Qué esperas para empezar?</x-self.message>
+    @else
     <div class="table-container">
         <table cellspacing="20">
             <thead>
@@ -50,4 +53,5 @@
             </tbody>
         </table>
     </div>
+    @endif
 </div>

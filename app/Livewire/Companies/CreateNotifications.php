@@ -11,6 +11,15 @@ class CreateNotifications extends Component
 {
     public bool $openCreate = false;
     public FormCreateNotification $cform;
+    public $machineId;
+
+    public function mount($machineId = null)
+    {
+        // si se pasa un id se rellenara el dato en el formulario
+        if($machineId != null){
+            $this -> cform -> machine_id = $machineId;
+        }
+    }
 
     public function render()
     {
@@ -19,6 +28,8 @@ class CreateNotifications extends Component
         return view('livewire.companies.create-notifications', compact('machines'));
     }
 
+
+    // metodo para crear
     public function store(){
         $this -> cform -> formStoreNotification();
 

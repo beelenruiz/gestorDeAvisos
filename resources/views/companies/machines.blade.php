@@ -10,6 +10,9 @@
         </div>
     </div>
 
+    @if (!count($machines))
+        <x-self.message><i class="fa-solid fa-heart-crack" style="margin-right: 0.5rem;"></i>No tienes máquinas registradas. ¿Seguro que no quieres agregar alguna?</x-self.message>
+    @else
     <div class="cards">
         @foreach ($machines as $item)
         <div class="card">
@@ -26,10 +29,11 @@
                 </div>
                 <p> {{$item -> n_serial}} </p>
                 <div class="button-create-notification">
-                    @livewire('companies.create-notifications')
+                    @livewire('companies.create-notifications', ['machineId' => $item->id])
                 </div>
             </div>
         </div>
         @endforeach
     </div>
+    @endif
 </x-app-layout>
