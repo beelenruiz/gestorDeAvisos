@@ -7,7 +7,7 @@
         <div class="filter-secction">
             <p>BUSCADOR</p>
             <form role="search">
-                <input type="search" placeholder="Buscar" aria-label="Buscar" wire:model.live="buscar">
+                <x-input type="search" placeholder="Buscar" aria-label="Buscar" wire:model.live="buscar"></x-input>
             </form>
         </div>
 

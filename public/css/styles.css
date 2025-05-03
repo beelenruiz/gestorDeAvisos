@@ -27,14 +27,28 @@ html, body {
     padding: 0 1.25rem;
 }
 
+.title > div {
+    padding-right: 4.0625rem;
+    display: flex ;
+    justify-content: end;
+}
+
 @media (max-width: 900px) {
     .title {
         padding-top: 2rem;
+    }
+
+    .title div {
+        padding-right: 2.5rem;
     }
 }
 
 @media (max-width: 550px) {
     .title {
         padding-top: 1.5rem;
+    }
+
+    .title div {
+        padding-right: 1.5rem;
     }
 }

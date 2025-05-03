@@ -31,7 +31,7 @@
 <body class="font-sans antialiased">
     <x-banner />
 
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-white">
         @livewire('navigation-menu')
 
         <!-- Page Heading -->
@@ -44,7 +44,7 @@
         @endif
 
         <!-- Page Content -->
-        <main class="bg-white">
+        <main>
             {{ $slot }}
         </main>
     </div>
@@ -53,7 +53,7 @@
 
     @livewireScripts
     <script>
-        // alerta confifmDelete ---------------------------------------------------------------------------
+        // alerta confifmDelete orders ---------------------------------------------------------------------------
         Livewire.on('onCancelOrder', id => {
             Swal.fire({
                 title: "Are you sure?",
@@ -69,6 +69,25 @@
                 }
             });
         });
+
+
+        // alerta confifmDelete notifications ------------------------------------------------------------------
+        Livewire.on('onCancelNotification', id => {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, cancel it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.dispatchTo('companies.notifications', 'yesCancel', id)
+                }
+            });
+        });
+        
 
         Livewire.on('onDeleteArticle', id => {
             Swal.fire({

@@ -11,7 +11,7 @@
         <table cellspacing="20">
             <thead>
                 <tr>
-                    <th max-width="300px">pedido</th>
+                    <th max-width="300px">id</th>
                     <th width="300px">fecha</th>
                     <th width="300px">estado</th>
                     <th width="300px">precio</th>
