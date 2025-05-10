@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Livewire\Articles;
 use App\Livewire\Companies\CreateNotifications;
@@ -40,5 +41,15 @@ Route::middleware([
     Route::get('/companies/orders/visualizer-order/{id}', VisualizerOrder::class) -> name('visualizer-order');
 
 
+    // carrito
+    Route::get('/cart', [CartController::class, 'index']) -> name('cart.index');
 
+    // añadir articulo al carrito
+    Route::post('/cart/add', [CartController::class, 'add']) -> name('cart.add');
+    //eliminar articulo del carrito
+    Route::delete('/cart/delete/{article}', [CartController::class, 'destroy']) -> name('cart.destroy');
+    // actualizar cantidad
+    Route::patch('/cart/update/{article}', [CartController::class, 'updateQuantity']) -> name('cart.update');
+    // vaciar el carrito
+    Route::post('/cart/empty', [CartController::class, 'emptyCart']) -> name('cart.empty');
 });

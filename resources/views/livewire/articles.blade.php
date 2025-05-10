@@ -1,6 +1,15 @@
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/cards.css') }}">
 @endpush
+@push('scripts')
+<script>
+    const USER_IS_LOGGED_IN = {{Auth::check() ? 'true' : 'false'}};
+    const CSRF_TOKEN = "{{ csrf_token() }}";
+    // URLs de la ruta
+    const CART_ADD_URL = "{{ route('cart.add') }}";
+</script>
+<script src="{{ asset('js/cart.js') }}"></script>
+@endpush
 
 <div class="content">
     <div class="filter">
@@ -44,6 +53,14 @@
                     @endforeach
                 </div>
                 <p>{{$item -> brand}}</p>
+
+                <div class="quantity-control" data-article="{{ $item->id }}">
+                    <button type="button" onclick="adjustQuantity({{ $item->id }}, -1)">−</button>
+                    <input type="number" min="1" value="1" id="quantity-{{ $item->id }}">
+                    <button type="button" onclick="adjustQuantity({{ $item->id }}, 1)">+</button>
+                </div>
+
+                <x-button onclick="add({{$item -> id}})">Agregar al carrito</x-button>
             </div>
         </a>
         @endforeach
