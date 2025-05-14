@@ -18,7 +18,8 @@ return new class extends Migration
             $table -> integer('n_serial');
             $table -> string('type');
             $table -> string('image');
-            $table -> foreignId('company_id') -> constrained() -> onDelete('cascade');
+            $table -> foreignId('company_id') -> nullable() -> constrained() ->onDelete('set null');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

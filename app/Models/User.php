@@ -69,4 +69,14 @@ class User extends Authenticatable
     public function company(){
         return $this->hasOne(Company::class);
     }
+
+    //relacion 1:1 con worker
+    public function worker(){
+        return $this->hasOne(Worker::class);
+    }
+
+    //relacion 1:1 con admin
+    public function admin(){
+        return $this->hasOne(Admin::class);
+    }
 }

@@ -18,31 +18,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Storage::deleteDirectory('/images/machines');
         Storage::deleteDirectory('/images/articles');
-
-        Storage::makeDirectory('/images/machines');
         Storage::makeDirectory('/images/articles');
 
-        User::factory(10)->create();
+        $this -> call(UserSeeder::class);
 
-        $this -> call(CompanySeeder::class);
-        $this -> call(CategorySeeder::class);
+        $this->call(CompanySeeder::class);
+        $this->call(AdminSeeder::class);
+        $this->call(WorkerSeeder::class);
 
-        Order::factory(10) ->create();
-        Cart::factory(7) -> create();
-        Machine::factory(10) -> create();
-        Notification::factory(10) -> create();
+        $this->call(CategorySeeder::class);
+        $this->call(ColorSeeder::class);
 
-        $this -> call(ColorSeeder::class);
-        $this -> call(ArticleSeeder::class);
+        $this->call(MachineSeeder::class);
+
+        Order::factory(10)->create();
+        Cart::factory(7)->create();
+        Notification::factory(10)->create();
+
+        $this->call(ArticleSeeder::class);
 
 
         // User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        
+
 
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table -> enum('state', ['completado', 'aceptado', 'cancelado', 'pendiente']) -> default('pendiente');
             $table -> decimal('price');
-            $table -> foreignId('company_id') -> constrained() -> onDelete('cascade');
+            $table -> foreignId('company_id') ->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }
