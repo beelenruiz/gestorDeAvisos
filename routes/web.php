@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CompanyDashboardController;
+use App\Livewire\AdminDashboard\Main;
 use App\Livewire\Articles;
 use App\Livewire\Companies\CreateNotifications;
 use App\Livewire\Companies\Orders;
@@ -19,10 +20,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
 
     // rutas para companies -----------------------------------------------------------------
-    Route::get('companies/machines', [DashboardController::class, 'machines'])->name('machines');
+    Route::get('companies/machines', [CompanyDashboardController::class, 'machines'])->name('machines');
     Route::get('companies/orders', Orders::class) -> name('orders');
     Route::get('companies/notifications', Notifications::class) -> name('notifications');
 
@@ -52,4 +53,9 @@ Route::middleware([
     Route::patch('/cart/update/{article}', [CartController::class, 'updateQuantity']) -> name('cart.update');
     // vaciar el carrito
     Route::post('/cart/empty', [CartController::class, 'emptyCart']) -> name('cart.empty');
+
+
+
+    // rutas admin
+    Route::get('/admin-dashboard', Main::class) -> name('admin-dashboard');
 });
