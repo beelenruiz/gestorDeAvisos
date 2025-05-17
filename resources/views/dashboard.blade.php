@@ -1,7 +1,3 @@
-@push('styles')
-   <link rel="stylesheet" href="{{ asset('css/companyDashboard.css') }}">
-@endpush
-
 <x-app-layout>
    <div class="cards">
       <div class="company">
@@ -26,7 +22,7 @@
             </p>
          </div>
 
-         <div class="botones">
+         <div class="company-botones">
          <a href="{{ route('machines') }}"><x-button>mis maquinas</x-button></a>
          <a href="{{ route('orders') }}"><x-button>mis pedidos</x-button></a>
          <a href="{{ route('notifications') }}"><x-button>mis avisos</x-button></a>

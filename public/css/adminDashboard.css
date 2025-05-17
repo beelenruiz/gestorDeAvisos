@@ -1,8 +1,7 @@
 .admin-dashboard {
     display: flex;
-    height: 100vh;
-    position: sticky;
 }
+
 
 aside {
     width: 15rem;
@@ -30,7 +29,6 @@ hr {
     flex-grow: 1;
     min-width: 0;
     padding: 1rem;
-    overflow: hidden;
 }
 
 
@@ -66,6 +64,7 @@ hr {
 
     .admin-content {
         width: 100%;
+        overflow-x: visible;
     }
 
     .menu-toggle-button {

@@ -29,7 +29,7 @@
     @stack('scripts')
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased" style="min-height: 100vh;">
     <x-banner />
 
     <div class="min-h-screen bg-white">

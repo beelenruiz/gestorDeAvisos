@@ -1,7 +1,3 @@
-@push('styles')
-<link rel="stylesheet" href="{{ asset('css/lists.css') }}">
-@endpush
-
 <div>
     <div class="title">
         <h1><i class="fa-solid fa-star"></i>PEDIDOS<i class="fa-solid fa-star"></i></h1>

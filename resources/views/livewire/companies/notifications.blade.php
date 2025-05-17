@@ -1,11 +1,7 @@
-@push('styles')
-<link rel="stylesheet" href="{{ asset('css/lists.css') }}">
-@endpush
-
 <div>
     <div class="title">
         <h1><i class="fa-solid fa-star"></i>NOTIFICACIONES<i class="fa-solid fa-star"></i></h1>
-        <div>
+        <div class="button-new">
         @livewire('companies.create-notifications')
         </div>
     </div>
@@ -14,7 +10,7 @@
         <x-self.message><i class="fa-solid fa-face-smile-wink" style="margin-right: 0.5rem;"></i>Parece que no has tenido ningun problema... ¿o si?</x-self.message>
     @else
     <div class="table-container">
-        <table cellspacing="20">
+        <table>
             <thead>
                 <tr>
                     <th max-width="300px">id</th>

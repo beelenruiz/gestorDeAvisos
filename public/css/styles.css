@@ -33,7 +33,7 @@ html, body {
     padding: 0 1.25rem;
 }
 
-.title > div {
+.button-new {
     padding-right: 4.0625rem;
     display: flex ;
     justify-content: end;

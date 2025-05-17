@@ -5,7 +5,7 @@
 <x-app-layout>
     <div class="title">
         <h1><i class="fa-solid fa-star"></i>MAQUINAS<i class="fa-solid fa-star"></i></h1>
-        <div>
+        <div class="button-new">
             <a href="{{route('notifications')}}"><x-button >mis avisos</x-button></a>
         </div>
     </div>

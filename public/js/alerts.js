@@ -34,6 +34,7 @@ Livewire.on('onCancelNotification', id => {
 });
 
 
+// borrar articulo del carrito ----------------------------------------------------------------
 Livewire.on('onDeleteArticle', id => {
     Swal.fire({
         title: "Are you sure?",
@@ -49,6 +50,25 @@ Livewire.on('onDeleteArticle', id => {
         }
     });
 });
+
+
+// borrar articulo del carrito ----------------------------------------------------------------
+Livewire.on('onDeleteCategory', id => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Livewire.dispatchTo('admin-dashboard.category.categories', 'yesDelete', id)
+        }
+    });
+});
+
 
 Livewire.on('message', txt => {
     Swal.fire({

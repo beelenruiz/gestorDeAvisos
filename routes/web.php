@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CompanyDashboardController;
+use App\Livewire\AdminDashboard\Category\Categories;
 use App\Livewire\AdminDashboard\Main;
 use App\Livewire\Articles;
 use App\Livewire\Companies\CreateNotifications;
@@ -58,4 +59,5 @@ Route::middleware([
 
     // rutas admin
     Route::get('/admin-dashboard', Main::class) -> name('admin-dashboard');
+    Route::get('/admin-dashboard/categories', Categories::class);
 });
