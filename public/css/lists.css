@@ -11,6 +11,7 @@ table {
     font-size: 1rem;
     text-align: center;
     min-width: 1000px;
+    border-collapse: collapse;
 }
 
 table thead {
@@ -57,7 +58,7 @@ table tbody tr {
 }
 
 
-/* descripcion en la vista notifications */
+/* descripcion en la vista notifications --------------------------------------------------------- */
 .description {
     width: 600px;
     white-space: normal;
@@ -65,9 +66,14 @@ table tbody tr {
 }
 
 
-/* nombre de la maquina en la vista notifications */
+/* nombre de la maquina en la vista notifications ------------------------------------------------ */
 .machine {
     width: 300px;
     white-space: normal;
     word-wrap: break-word; 
+}
+
+.icon {
+    height: 2rem;
+    align-self: center;
 }

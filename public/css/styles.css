@@ -1,3 +1,9 @@
+/* importo aqui el resto de hojas de estilos --------------------------------------------------------- */
+@import 'companyDashboard.css';
+@import 'adminDashboard.css';
+@import 'lists.css';
+
+
 * {
     box-sizing: border-box;
 }

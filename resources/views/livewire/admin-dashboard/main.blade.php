@@ -1,9 +1,7 @@
-@push('styles')
-<link rel="stylesheet" href="{{ asset('css/adminDashboard.css') }}">
-@endpush
-
 <div class="admin-dashboard">
-    <aside>
+    <x-button class="menu-toggle-button" id="menuToggle">☰</x-button>
+
+    <aside id="aside">
         <ul>
             <li wire:click="setView('dashboard')"><i class="fa-solid fa-house-user"></i>Dashboard</li>
             <hr />
@@ -26,23 +24,51 @@
     </aside>
 
 
-
-    @if ($view === 'dashboard')
-        @livewire('admin-dashboard.dashboard')
-    @elseif ($view === 'dashboard')
-        @livewire('admin-dashboard.dashboard')
-    @elseif ($view === 'orders')
-        @livewire('admin-dashboard.orders')
-    @elseif ($view === 'products')
-        @livewire('admin-dashboard.products')
-    @elseif ($view === 'categories')
-        @livewire('admin-dashboard.categories')
-    @elseif ($view === 'companies')
-        @livewire('admin-dashboard.companies')
-    @elseif ($view === 'workers')
-        @livewire('admin-dashboard.workers')
-    @elseif ($view === 'machines')
-        @livewire('admin-dashboard.machines')
-    @endif
+    <div class="admin-content">
+        @if ($view === 'dashboard')
+            @livewire('admin-dashboard.dashboard')
+        @elseif ($view === 'dashboard')
+            @livewire('admin-dashboard.dashboard')
+        @elseif ($view === 'orders')
+            @livewire('admin-dashboard.orders')
+        @elseif ($view === 'articles')
+            @livewire('admin-dashboard.articles')
+        @elseif ($view === 'categories')
+            @livewire('admin-dashboard.category.categories')
+        @elseif ($view === 'companies')
+            @livewire('admin-dashboard.companies')
+        @elseif ($view === 'workers')
+            @livewire('admin-dashboard.workers')
+        @elseif ($view === 'machines')
+            @livewire('admin-dashboard.machines')
+        @endif
+    </div>
 
 </div>
+
+<script>
+    function initializeAdminMenu() {
+        const menuToggleButton = document.getElementById('menuToggle');
+        const adminAside = document.getElementById('aside');
+
+        if (menuToggleButton && adminAside) {
+            menuToggleButton.addEventListener('click', function () {
+                adminAside.classList.toggle('is-open');
+            });
+
+            // logica que cierra el menu en moviles al hacer click
+            adminAside.querySelectorAll('li[wire\\:click]').forEach(item => {
+                item.addEventListener('click', () => {
+                    if (window.innerWidth <= 900) {
+                        adminAside.classList.remove('is-open');
+                    }
+                });
+            });
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', initializeAdminMenu);
+
+    // no perdemos la vista al recargar
+    document.addEventListener('livewire:navigated', initializeAdminMenu);
+</script>
