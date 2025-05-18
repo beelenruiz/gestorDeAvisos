@@ -1,6 +1,3 @@
-@push('styles')
-<link rel="stylesheet" href="{{ asset('css/lists.css') }}">
-@endpush
 @push('scripts')
 <script>
     const USER_IS_LOGGED_IN = {{Auth::check() ? 'true' : 'false'}};

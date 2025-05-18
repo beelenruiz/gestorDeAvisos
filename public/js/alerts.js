@@ -52,7 +52,7 @@ Livewire.on('onDeleteArticle', id => {
 });
 
 
-// borrar articulo del carrito ----------------------------------------------------------------
+// borrar categoria de admin dashboard ----------------------------------------------------------------
 Livewire.on('onDeleteCategory', id => {
     Swal.fire({
         title: "Are you sure?",
@@ -68,6 +68,25 @@ Livewire.on('onDeleteCategory', id => {
         }
     });
 });
+
+
+// borrar machine de admin dashboard ----------------------------------------------------------------
+Livewire.on('onDeleteMachine', id => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Livewire.dispatchTo('admin-dashboard.machine.machines', 'yesDelete', id)
+        }
+    });
+});
+
 
 
 Livewire.on('message', txt => {

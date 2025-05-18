@@ -2,6 +2,7 @@
 @import 'companyDashboard.css';
 @import 'adminDashboard.css';
 @import 'lists.css';
+@import 'cards.css';
 
 
 * {
@@ -21,7 +22,7 @@ html, body {
     padding-top: 2.5rem;
 }
 
-.title h1 {
+.title > h1 {
     color: #531919;
     font-weight: bold;
     font-size: clamp(2.25rem, 5vw, 3.1875rem);
@@ -29,7 +30,7 @@ html, body {
     white-space: nowrap
 }
 
-.title h1 i {
+.title > h1 > i {
     padding: 0 1.25rem;
 }
 
@@ -44,7 +45,7 @@ html, body {
         padding-top: 2rem;
     }
 
-    .title div {
+    .title > div {
         padding-right: 2.5rem;
     }
 }
@@ -54,7 +55,7 @@ html, body {
         padding-top: 1.5rem;
     }
 
-    .title div {
+    .title > div {
         padding-right: 1.5rem;
     }
 }

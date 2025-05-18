@@ -1,5 +1,5 @@
 /* disposición de las tarjetas usando grid --------------------------------------------------------------- */
-.cards {
+.company-cards {
     margin: auto;
     display: grid;
     grid-template-columns: 2fr 3fr;
@@ -9,14 +9,14 @@
 }
 
 @media (max-width: 900px) {
-    .cards {
+    .company-cards {
         grid-template-columns: 1fr;
         gap: 2.5rem;
     }
 }
 
 @media (max-width: 550px) {
-    .cards {
+    .company-cards {
         padding-top: 1.5rem;
         gap: 1.5rem;
     }

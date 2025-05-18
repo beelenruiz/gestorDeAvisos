@@ -1,5 +1,5 @@
 <x-app-layout>
-   <div class="cards">
+   <div class="company-cards">
       <div class="company">
          <div class="company-image">
             <img src="{{ $user ->profile_photo_url }}" alt="{{ $user ->name }}" />

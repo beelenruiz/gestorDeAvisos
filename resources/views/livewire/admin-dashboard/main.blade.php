@@ -42,7 +42,7 @@
         @elseif ($view === 'workers')
         @livewire('admin-dashboard.workers')
         @elseif ($view === 'machines')
-        @livewire('admin-dashboard.machines')
+        @livewire('admin-dashboard.machine.machines')
         @endif
     </div>
 

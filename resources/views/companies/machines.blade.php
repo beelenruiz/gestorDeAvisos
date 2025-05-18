@@ -1,7 +1,3 @@
-@push('styles')
-<link rel="stylesheet" href="{{ asset('css/cards.css') }}">
-@endpush
-
 <x-app-layout>
     <div class="title">
         <h1><i class="fa-solid fa-star"></i>MAQUINAS<i class="fa-solid fa-star"></i></h1>

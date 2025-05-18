@@ -48,6 +48,15 @@
     width: 100%;
 }
 
+.mini-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+    justify-content: space-between;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    width: 100%;
+}
+
 @media (max-width: 900px) {
     .cards {
         padding: 2rem 2.5rem;
@@ -71,8 +80,22 @@
     padding: 1.875rem;
 }
 
+.mini-card {
+    display: flex;
+    justify-content: space-around;
+    border: 0.0625rem solid #DAD9D9;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.08);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    padding: 1rem;
+}
+
 .card img {
     margin: auto;
+}
+
+.mini-card img {
+    width: 25%;
 }
 
 .card-content {
@@ -124,13 +147,7 @@
     .info-machine {
         gap: 0.625rem;
         margin-top: 1rem;
-    }
-}
-
-@media (max-width: 900px) {
-    .info-machine {
-        gap: 0.625rem;
-        margin-top: 1rem;
+        font-size: 1rem;
     }
 }
 
@@ -161,4 +178,25 @@
     display: flex;
     justify-content: end;
     margin-top: 1.5625rem;
+}
+
+
+/* titulo maquinas descatalogadas de la vista machines de admin dashboard ----------------------- */
+.trashed {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.trashed > h1 {
+    font-size: clamp(1.125rem, 5vw, 2.1875rem);
+    color: #531919;
+    font-weight: bold;
+}
+
+@media (max-width: 550px) {
+    .trashed {
+        display: block;
+        text-align: center;
+    }
 }

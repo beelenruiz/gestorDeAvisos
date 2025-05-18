@@ -4,6 +4,7 @@ namespace App\Livewire\AdminDashboard\Category;
 
 use App\Livewire\Forms\AdminDashboard\Category\FormUpdateCategory;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -35,8 +36,12 @@ class Categories extends Component
     {
         $category = Category::findOrfail($id);
 
+        if(basename($category->image)!='default.png'){
+            Storage::delete($category->image);
+        }
+
         $category->delete();
-        $this->dispatch('message', 'Curso Borrado.');
+        $this->dispatch('message', 'Categoría Borrada');
     }
 
 
