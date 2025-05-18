@@ -14,50 +14,57 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-}) -> name('welcome');
+})->name('welcome');
 
+
+// vista articulos para tienda -----------------------------------------------------------
+Route::get('articles', Articles::class)->name('articles');
+
+
+// logueados ----------------------------------------------------------------------------------------------------------
 Route::middleware([
-    'auth:sanctum',
+    'auth',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
+    // solo empresas
+    Route::middleware(['role:company'])->group(function () {
+        Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
 
-    // rutas para companies -----------------------------------------------------------------
-    Route::get('companies/machines', [CompanyDashboardController::class, 'machines'])->name('machines');
-    Route::get('companies/orders', Orders::class) -> name('orders');
-    Route::get('companies/notifications', Notifications::class) -> name('notifications');
+        // rutas para companies -----------------------------------------------------------------
+        Route::get('companies/machines', [CompanyDashboardController::class, 'machines'])->name('machines');
+        Route::get('companies/orders', Orders::class)->name('orders');
+        Route::get('companies/notifications', Notifications::class)->name('notifications');
+
+        // ruta para visualizar y editar pedidos
+        Route::get('/companies/orders/visualizer-order/{id}', VisualizerOrder::class)->name('visualizer-order');
+
+        // añadir articulo al carrito
+        Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+        //eliminar articulo del carrito
+        Route::delete('/cart/delete/{article}', [CartController::class, 'destroy'])->name('cart.destroy');
+        // actualizar cantidad
+        Route::patch('/cart/update/{article}', [CartController::class, 'updateQuantity'])->name('cart.update');
+        // vaciar el carrito
+        Route::post('/cart/empty', [CartController::class, 'emptyCart'])->name('cart.empty');
+    });
 
 
-    // vista articulos para tienda -----------------------------------------------------------
-    Route::get('articles', Articles::class) -> name('articles');
-    
+
+    // solo admin
+    Route::middleware(['role:admin'])->group(function () {
+        // rutas admin
+        Route::get('/admin-dashboard', Main::class)->name('admin-dashboard');
+        Route::get('/admin-dashboard/categories', Categories::class);
+    });
+
 
     // ruta para crear avisos 
-    Route::get('companies/notifications/create', CreateNotifications::class) -> name('notifications.create');
+    Route::get('companies/notifications/create', CreateNotifications::class)->name('notifications.create');
     // ruta para visualizar avisos
-    Route::get('/companies/notifications/visualizer-notification/{id}', VisualizerNotification::class) -> name('visualizer-notification');
-
-
-    // ruta para visualizar y editar pedidos
-    Route::get('/companies/orders/visualizer-order/{id}', VisualizerOrder::class) -> name('visualizer-order');
+    Route::get('/companies/notifications/visualizer-notification/{id}', VisualizerNotification::class)->name('visualizer-notification');
 
 
     // carrito
-    Route::get('/cart', [CartController::class, 'index']) -> name('cart.index');
-
-    // añadir articulo al carrito
-    Route::post('/cart/add', [CartController::class, 'add']) -> name('cart.add');
-    //eliminar articulo del carrito
-    Route::delete('/cart/delete/{article}', [CartController::class, 'destroy']) -> name('cart.destroy');
-    // actualizar cantidad
-    Route::patch('/cart/update/{article}', [CartController::class, 'updateQuantity']) -> name('cart.update');
-    // vaciar el carrito
-    Route::post('/cart/empty', [CartController::class, 'emptyCart']) -> name('cart.empty');
-
-
-
-    // rutas admin
-    Route::get('/admin-dashboard', Main::class) -> name('admin-dashboard');
-    Route::get('/admin-dashboard/categories', Categories::class);
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 });
