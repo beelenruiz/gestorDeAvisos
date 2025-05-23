@@ -32,8 +32,10 @@ class Companies extends Component
     public function delete(int $id)
     {
         $company = Company::findOrfail($id);
+        $user = $company -> user;
 
         $company->delete();
+        $user -> delete();
         $this->dispatch('message', 'Empresa eliminada');
     }
 

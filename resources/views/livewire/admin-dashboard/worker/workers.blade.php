@@ -1,9 +1,9 @@
 <div>
     <div class="title">
-        <h1><i class="fa-solid fa-star"></i>EMPRESAS<i class="fa-solid fa-star"></i></h1>
+        <h1><i class="fa-solid fa-star"></i>TRABAJADORES<i class="fa-solid fa-star"></i></h1>
 
         <div class="button-new">
-            @livewire('admin-dashboard.company.create-company')
+            @livewire('admin-dashboard.worker.create-worker')
         </div>
     </div>
 
@@ -14,18 +14,16 @@
                     <th max-width="300px">id</th>
                     <th width="300px">nombre</th>
                     <th width="300px">email</th>
-                    <th width="300px">telefono</th>
                     <th class="botones"></th>
                 </tr>
             </thead>
 
             <tbody>
-                @foreach ($companies as $item)
+                @foreach ($workers as $item)
                 <tr>
                     <td>{{$item -> id}}</td>
                     <td>{{$item -> user -> name}}</td>
                     <td>{{$item -> user -> email}}</td>
-                    <td>{{$item -> phone}}</td>
                     <td class="botones">
                         <div class="flex justify-content-center">
                             <button wire:click="edit({{$item -> id}})" class="font-medium text-blue-700/90 hover:underline mr-5">
@@ -44,8 +42,8 @@
 
 
     <!-- modal para update -------------------------------------------------------------------------- -->
-    @if ($uform -> company != null)
-    <x-dialog-modal wire:model="openCreate">
+    @if ($uform -> worker != null)
+    <x-dialog-modal wire:model="openUpdate">
         <x-slot name="title">
             NUEVA EMPRESA
         </x-slot>
@@ -63,13 +61,6 @@
                 <x-label for="email">Email</x-label>
                 <x-input type="text" wire:model="uform.email" name="email" id="email"></x-input>
                 <x-input-error for="uform.email" />
-            </div>
-
-            {{-- phone --}}
-            <div>
-                <x-label for="phone">Teléfono</x-label>
-                <x-input type="text" wire:model="uform.phone" name="phone" id="phone"></x-input>
-                <x-input-error for="uform.phone" />
             </div>
         </x-slot>
 

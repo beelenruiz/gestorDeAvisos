@@ -41,7 +41,7 @@
         @elseif ($view === 'companies')
         @livewire('admin-dashboard.company.companies')
         @elseif ($view === 'workers')
-        @livewire('admin-dashboard.workers')
+        @livewire('admin-dashboard.worker.workers')
         @elseif ($view === 'machines')
         @livewire('admin-dashboard.machine.machines')
         @endif
