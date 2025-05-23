@@ -13,7 +13,7 @@
     margin: auto;
   }
   
-  .content {
+  .images-carousel {
     display: flex;
     gap: 15px;
     padding: 0;
@@ -21,12 +21,12 @@
     list-style: none;
   }
   
-  .content li {
+  .images-carousel > li {
     flex: 0 0 auto;
     scroll-snap-align: center;
   }
   
-  .content img {
+  .images-carousel > img {
     height: 400px;
     width: 942px;
     object-fit: cover;

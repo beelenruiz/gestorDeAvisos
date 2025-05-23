@@ -12,7 +12,7 @@
          <button class="scroll-btn left"><i class="fa-solid fa-circle-arrow-left fa-2xl" style="color: #490e0e; margin: 10px;"></i></button>
 
          <div class="carousel">
-            <ul class="content">
+            <ul class="images-carousel">
                <li><img style="height: 400; width: 942;" src="{{Storage::url('images/carrousel/imagen1.png')}}"></li>
                <li><img style="height: 400; width: 942;" src="{{Storage::url('images/carrousel/imagen2.png')}}"></li>
                <li><img style="height: 400; width: 942;" src="{{Storage::url('images/carrousel/imagen3.png')}}"></li>

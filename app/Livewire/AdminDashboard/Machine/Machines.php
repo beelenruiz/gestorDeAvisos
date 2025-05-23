@@ -17,6 +17,7 @@ class Machines extends Component
     public FormUpdateMachine $uform;
     public bool $openUpdate = false;
 
+    #[On('createdMachine')]
     public function render()
     {
         $machines = Machine::orderBy('name')->get();

@@ -20,6 +20,7 @@
                 <hr />
                 <li wire:click="setView('workers')"><i class="fa-solid fa-users-gear"></i>Trabajadores</li>
                 <hr />
+                <hr />
                 <li wire:click="setView('machines')"><i class="fa-solid fa-hard-drive"></i>Maquinas</li>
             </ul>
         </aside>
@@ -28,9 +29,9 @@
 
     <div class="admin-content">
         @if ($view === 'dashboard')
-        @livewire('admin-dashboard.dashboard')
+        
         @elseif ($view === 'dashboard')
-        @livewire('admin-dashboard.dashboard')
+        
         @elseif ($view === 'orders')
         @livewire('admin-dashboard.orders')
         @elseif ($view === 'articles')
@@ -38,7 +39,7 @@
         @elseif ($view === 'categories')
         @livewire('admin-dashboard.category.categories')
         @elseif ($view === 'companies')
-        @livewire('admin-dashboard.companies')
+        @livewire('admin-dashboard.company.companies')
         @elseif ($view === 'workers')
         @livewire('admin-dashboard.workers')
         @elseif ($view === 'machines')

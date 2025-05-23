@@ -16,6 +16,7 @@ class Categories extends Component
     public FormUpdateCategory $uform;
     public bool $openUpdate = false;
 
+    #[On('createdCategory')]
     public function render()
     {
         $categories = Category::orderBy('name')->get();
