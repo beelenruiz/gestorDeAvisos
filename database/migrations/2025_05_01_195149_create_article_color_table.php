@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('article_color', function (Blueprint $table) {
             $table->id();
             $table -> foreignId('color_id') -> constrained() -> onDelete('cascade');
-            $table -> foreignId('article_id') -> constrained();
+            $table -> foreignId('article_id') -> constrained()-> onDelete('cascade');;
             //$table->timestamps();
         });
     }

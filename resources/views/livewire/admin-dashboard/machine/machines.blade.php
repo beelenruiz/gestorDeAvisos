@@ -48,7 +48,7 @@
 
     @if ($trashed == true)
     <div class="content">
-        <div class="mini-cards">
+        <div class="mini-cards" style="background-color: #d6d9d9;">
             @foreach ($trashedMachines as $item)
             <div class="mini-card">
                 <img src="{{Storage::url($item -> image)}}" alt="{{$item -> name}}">

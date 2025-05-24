@@ -35,7 +35,7 @@
         @elseif ($view === 'orders')
         @livewire('admin-dashboard.orders')
         @elseif ($view === 'articles')
-        @livewire('admin-dashboard.articles')
+        @livewire('admin-dashboard.article.articles')
         @elseif ($view === 'categories')
         @livewire('admin-dashboard.category.categories')
         @elseif ($view === 'companies')
