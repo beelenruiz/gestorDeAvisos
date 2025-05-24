@@ -17,21 +17,13 @@ class ArticleFactory extends Factory
      */
     public function definition(): array
     {
-        fake() -> addProvider(new \Mmo\Faker\PicsumProvider(fake()));
-
         return [
             'name' => fake() -> sentence(3, true),
             'description' => fake() -> text(100),
             'brand' => fake() -> sentence(1),
             'price' => fake() -> randomFloat(2, 10, 200),
             'stock' => fake() -> numberBetween(0, 100),
-            'images' => [$this -> generateImageUrl(), $this -> generateImageUrl(), $this -> generateImageUrl(),$this -> generateImageUrl(), $this -> generateImageUrl()],
             'category_id' => Category::all() -> random() -> id
         ];
-    }
-
-    private function generateImageUrl()
-    {
-        return 'images/articles/'. fake() -> picsum('public/storage/images/articles', 500, 600, false);
     }
 }

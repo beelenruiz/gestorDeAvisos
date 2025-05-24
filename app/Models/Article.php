@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
@@ -14,11 +15,7 @@ class Article extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['name', 'description', 'brand', 'price', 'stock', 'images', 'category_id'];
-
-    protected $casts = [
-        'images' => 'array'
-    ];
+    protected $fillable = ['name', 'description', 'brand', 'price', 'stock', 'category_id'];
 
     //relacion n:m con orders
     public function orders(): BelongsToMany{
@@ -41,5 +38,10 @@ class Article extends Model
     // relacion n:m con colors
     public function colors(): BelongsToMany {
         return $this -> belongsToMany(Color::class);
+    }
+
+    //relacion 1:n con articleImage
+    public function images(): HasMany {
+        return $this -> hasMany(ArticleImage::class);
     }
 }

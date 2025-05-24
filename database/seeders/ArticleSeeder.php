@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
+use App\Models\ArticleImage;
 use App\Models\Cart;
 use App\Models\Color;
 use App\Models\Order;
@@ -28,6 +29,11 @@ class ArticleSeeder extends Seeder
             shuffle($carts);
             shuffle($orders);
             shuffle($colors);
+
+            ArticleImage::factory(5)->create([
+                'article_id' => $article->id,
+            ]);
+
             $article -> carts() -> attach($this -> getRandomArrayId($carts), [
                 'quantity' => rand(1, 5),
                 'price' => $article -> price,

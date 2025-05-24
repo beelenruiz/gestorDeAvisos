@@ -18,7 +18,6 @@ return new class extends Migration
             $table -> string('brand');
             $table -> decimal('price', 5, 2);
             $table -> integer('stock');
-            $table -> json('images');
             $table -> foreignId('category_id') -> constrained() -> onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
