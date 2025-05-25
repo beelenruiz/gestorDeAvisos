@@ -12,7 +12,8 @@
 {!! $attributes->merge(['style' => 
     'padding: 0.5rem 1rem;
     font-size: 1rem;
-    border-radius: 0.75rem;',
+    border-radius: 0.75rem;
+    width: 100%;',
     'class' => 'input-focus'
 ]) !!}>
 

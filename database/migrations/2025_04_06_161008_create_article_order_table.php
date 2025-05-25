@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table -> foreignId('article_id') -> constrained();
             $table -> foreignId('order_id') -> constrained() -> onDelete('cascade');
-            $table->timestamps();
+            //$table->timestamps();
         });
     }
 

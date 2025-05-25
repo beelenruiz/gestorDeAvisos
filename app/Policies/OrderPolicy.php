@@ -42,7 +42,18 @@ class OrderPolicy
             throw new AuthorizationException("No autorizado. Solo puedes cancelar o editar un pedido si este está en estado 'pendiente'.");
         }
 
-        return $user -> company -> id === $order -> company_id;
+        if ($user -> company) {
+            if ($user -> company -> id != $order -> company_id) {
+                throw new AuthorizationException("No autorizado.");
+            }
+        } else {
+            if (!$user -> admin){
+                throw new AuthorizationException("No autorizado.");
+            }
+        }
+        
+
+        return true;
     }
 
     /**

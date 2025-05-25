@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('machines', function (Blueprint $table) {
             $table->id();
-            $table -> string('name');
+            $table -> string('name')->unique();
             $table -> boolean('color');
-            $table -> integer('n_serial');
+            $table -> integer('n_serial')->unique();
             $table -> string('type');
             $table -> string('image');
             $table -> foreignId('company_id') -> nullable() -> constrained() ->onDelete('set null');

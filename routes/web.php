@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CompanyDashboardController;
 use App\Livewire\AdminDashboard\Category\Categories;
 use App\Livewire\AdminDashboard\Main;
+use App\Livewire\AdminDashboard\Order\VisualizerOrder as OrderVisualizerOrder;
 use App\Livewire\Articles;
 use App\Livewire\Companies\CreateNotifications;
 use App\Livewire\Companies\Orders;
@@ -36,9 +37,6 @@ Route::middleware([
         Route::get('companies/orders', Orders::class)->name('orders');
         Route::get('companies/notifications', Notifications::class)->name('notifications');
 
-        // ruta para visualizar y editar pedidos
-        Route::get('/companies/orders/visualizer-order/{id}', VisualizerOrder::class)->name('visualizer-order');
-
         // añadir articulo al carrito
         Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
         //eliminar articulo del carrito
@@ -57,6 +55,10 @@ Route::middleware([
         Route::get('/admin-dashboard', Main::class)->name('admin-dashboard');
         Route::get('/admin-dashboard/categories', Categories::class);
     });
+
+
+    // ruta para visualizar y editar pedidos
+    Route::get('/companies/orders/visualizer-order/{id}', VisualizerOrder::class)->name('visualizer-order');
 
 
     // ruta para crear avisos 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table -> string('name');
+            $table -> string('name')->unique();
             $table -> string('description');
             $table -> string('brand');
             $table -> decimal('price', 5, 2);

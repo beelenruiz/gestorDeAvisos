@@ -1,4 +1,6 @@
 <div>
+    <x-button class="menu-toggle-button" id="menuToggle">☰</x-button>
+
     <div class="title">
         <h1><i class="fa-solid fa-star"></i>PRODUCTOS<i class="fa-solid fa-star"></i></h1>
         <div class="button-new">
@@ -12,7 +14,7 @@
             <div class="mini-card">
                 <img src="{{Storage::url($item -> images -> first() -> path)}}" alt="{{$item -> name}}">
                 <div class="card-content">
-                    <h1>{{$item -> name}}</h1>
+                    <h1>{{$item -> name}}<span>{{$item -> price}}€</span></h1>
                     <div class="colores">
                         @foreach ($item -> colors as $color)
                         <section style="background-color: {{$color -> color}};"></section>
@@ -22,7 +24,7 @@
                         <p>{{$item -> brand}}</p>
                         <p>
                             stock: {{$item -> stock}}
-                            <button wire:click="editStock({{$item -> id}})" class="font-medium text-blue-700/90 hover:underline">
+                            <button wire:click="openModalStock({{$item -> id}})" class="font-medium text-blue-700/90 hover:underline">
                                 cambiar
                             </button>
                         </p>
@@ -56,7 +58,7 @@
             <div class="mini-card" style="background-color: #d6d9d9;">
                 <img src="{{Storage::url($item -> images[0])}}" alt="{{$item -> name}}">
                 <div class="card-content">
-                    <h1>{{$item -> name}}</h1>
+                    <h1>{{$item -> name}}<span>{{$item -> price}}€</span></h1>
                     <div class="colores">
                         @foreach ($item -> colors as $color)
                         <section style="background-color: {{$color -> color}};"></section>
@@ -262,5 +264,23 @@
             </div>
         </x-slot>
     </x-dialog-modal>
+    @endif
+
+
+    <!-- modal para stock -->ç
+    @if($modalStock)
+        <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div class="bg-white p-4 rounded-lg w-96">
+                <h2 class="text-lg font-semibold mb-3">Modificar Stock</h2>
+
+                <input type="number" wire:model="stockChange" placeholder="Ej. 5 o -3"
+                    class="w-full border rounded p-2 mb-4" />
+
+                <div class="flex justify-end gap-2">
+                    <button wire:click="$set('modalStock', false)" class="bg-gray-300 px-4 py-2 rounded">Cancelar</button>
+                    <button wire:click="changeStock" class="bg-green-600 text-white px-4 py-2 rounded">Guardar</button>
+                </div>
+            </div>
+        </div>
     @endif
 </div>

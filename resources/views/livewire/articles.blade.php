@@ -57,7 +57,7 @@
                     <button type="button" onclick="adjustQuantity({{ $item->id }}, 1)">+</button>
                 </div>
 
-                <x-button onclick="add({{$item -> id}})">Agregar al carrito</x-button>
+                <span>{{$item -> price}}€</span><x-button onclick="add({{$item -> id}})">Agregar al carrito</x-button>
             </div>
         </a>
         @endforeach

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('article_id')->constrained()->onDelete('cascade');
             $table->string('path');
-            $table->timestamps();
+            //$table->timestamps();
         });
     }
 

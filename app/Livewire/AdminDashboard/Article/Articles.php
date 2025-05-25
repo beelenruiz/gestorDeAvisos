@@ -18,6 +18,10 @@ class Articles extends Component
     public FormUpdateArticle $uform;
     public bool $openUpdate = false;
 
+    public int $stockChange = 0;
+    public ?int $articleId = null;
+    public bool $modalStock = false;
+
     #[On('createdArticle')]
     public function render()
     {
@@ -39,7 +43,23 @@ class Articles extends Component
     }
 
 
-    // metodo para cambiar stock
+    // metodo para cambiar stock --------------------------------------------------
+    public function openModalStock(int $id)
+    {
+        $this->stockChange = 0;
+        $this->articleId = $id;
+        $this->modalStock = true;
+    }
+
+    public function changeStock(){
+        $article = Article::findOrfail($this->articleId);
+        
+        $newStock = max(0, $article->stock + $this->stockChange);
+        $article->update(['stock' => $newStock]);
+
+        $this->reset(['stockChange', 'modalStock', 'articleId']);
+        $this->dispatch('message', 'actualizado');
+    }
 
 
     // Metodos para borrar --------------------------------------------------------
