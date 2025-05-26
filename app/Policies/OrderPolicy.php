@@ -51,7 +51,6 @@ class OrderPolicy
                 throw new AuthorizationException("No autorizado.");
             }
         }
-        
 
         return true;
     }

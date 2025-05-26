@@ -24,7 +24,6 @@ class Notifications extends Component
     //metodo para abrir vista de visualizer -----------------------------------------------------------
     public function visualize(int $id) {
         $notification = Notification::findOrFail($id);
-        $this -> authorize('view', $notification);
 
         return redirect() -> route('visualizer-notification', $id);
     }

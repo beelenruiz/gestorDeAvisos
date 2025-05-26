@@ -29,11 +29,33 @@
             <p><span class="font-semibold text-gray-500">N° Serie:</span> {{ $notification->machine->n_serial }}</p>
             <p><span class="font-semibold text-gray-500">Tipo:</span> {{ $notification->machine->type }}</p>
             @if($notification->machine->image)
-                <div class="col-span-2">
-                    <span class="font-semibold text-gray-500">Imagen:</span>
-                    <img src="{{ asset('storage/' . $notification->machine->image) }}" alt="Imagen de la máquina" class="mt-2 rounded-xl shadow-md h-60">
-                </div>
+            <div class="col-span-2">
+                <span class="font-semibold text-gray-500">Imagen:</span>
+                <img src="{{ asset('storage/' . $notification->machine->image) }}" alt="Imagen de la máquina" class="mt-2 rounded-xl shadow-md h-60">
+            </div>
             @endif
         </div>
     </div>
+
+    @if (Auth::user() -> admin)
+    {{-- Información del trabajador --}}
+    <div class="bg-white shadow-md rounded-2xl p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4 text-gray-700">Trabajador asignado</h2>
+        @if ($notification -> worker_id)
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <p><span class="font-semibold text-gray-500">Nombre:</span> {{ $notification->worker -> user->name }}</p>
+            <p><span class="font-semibold text-gray-500">Email:</span> {{ $notification->worker->user->email }}</p>
+        </div>
+        @else
+        <select wire:change="assign({{ $notification->id }}, $event.target.value)" class="border rounded px-2 py-1">
+            <option value=""> asignar </option>
+            @foreach($workers as $worker)
+            <option value="{{$worker -> id}}">
+                {{$worker -> user -> name}}
+            </option>
+            @endforeach
+        </select>
+        @endif
+    </div>
+    @endif
 </div>

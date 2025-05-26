@@ -22,6 +22,9 @@
                 <hr />
                 <hr />
                 <li wire:click="setView('machines')"><i class="fa-solid fa-hard-drive"></i>Maquinas</li>
+                <hr />
+                <li wire:click="setView('notifications')"><i class="fa-solid fa-bell"></i>Avisos</li>
+                <hr/>
             </ul>
         </aside>
     </div>
@@ -44,6 +47,8 @@
         @livewire('admin-dashboard.worker.workers')
         @elseif ($view === 'machines')
         @livewire('admin-dashboard.machine.machines')
+        @elseif ($view === 'notifications')
+        @livewire('admin-dashboard.notification.notifications')
         @endif
     </div>
 

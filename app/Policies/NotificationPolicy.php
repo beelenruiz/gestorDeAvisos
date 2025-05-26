@@ -22,7 +22,17 @@ class NotificationPolicy
      */
     public function view(User $user, Notification $notification): bool
     {
-        return $user -> company -> id === $notification -> company_id;;
+        if ($user -> company) {
+            if ($user -> company -> id != $notification -> company_id) {
+                throw new AuthorizationException("No autorizado.");
+            }
+        } else {
+            if (!$user -> admin){
+                throw new AuthorizationException("No autorizado.");
+            }
+        }
+
+        return true;
     }
 
     /**

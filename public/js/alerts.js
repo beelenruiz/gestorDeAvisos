@@ -195,6 +195,41 @@ Livewire.on('onDeleteArticle', id => {
 });;
 
 
+// cancelar avisos de admin dashboard ----------------------------------------------------------------
+Livewire.on('onCancelNotification', id => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Livewire.dispatchTo('admin-dashboard.notification.notifications', 'yesCancel', id)
+        }
+    });
+});;
+
+// borrar avisos de admin dashboard ----------------------------------------------------------------
+Livewire.on('onDeleteNotification', id => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Livewire.dispatchTo('admin-dashboard.notification.notifications', 'yesDelete', id)
+        }
+    });
+});;
+
+
 Livewire.on('message', txt => {
     Swal.fire({
         icon: "success",

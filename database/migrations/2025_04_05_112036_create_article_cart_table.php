@@ -17,7 +17,7 @@ return new class extends Migration
             $table -> foreignId('article_id') -> constrained();
             $table -> decimal('quantity');
             $table -> decimal('price', 10, 2);
-            //$table->timestamps();
+            $table->timestamps();
         });
     }
 
