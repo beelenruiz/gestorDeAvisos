@@ -22,6 +22,7 @@ class Order extends Model
     //relacion n:m con articles
     public function articles(): BelongsToMany{
         return $this -> belongsToMany(Article::class)
-        -> withTimestamps();
+        -> withTimestamps()
+        ->withTrashed();
     }
 }

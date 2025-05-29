@@ -2,11 +2,22 @@
     <div class="title">
         <h1><i class="fa-solid fa-star"></i>EMPRESAS<i class="fa-solid fa-star"></i></h1>
 
-        <div class="button-new">
-            @livewire('admin-dashboard.company.create-company')
+        <div class="head">
+            <div>
+                <form role="search">
+                    <x-input type="search" placeholder="Buscar" aria-label="Buscar" wire:model.live="buscar"></x-input>
+                </form>
+            </div>
+
+            <div class="button-new">
+                @livewire('admin-dashboard.company.create-company')
+            </div>
         </div>
     </div>
 
+    @if (!count($companies))
+        <x-self.message><i class="fa-solid fa-face-smile-wink" style="margin-right: 0.5rem;"></i>Añadimos una??</x-self.message>
+    @else
     <div class="table-container">
         <table class="list">
             <thead>
@@ -41,6 +52,7 @@
             </tbody>
         </table>
     </div>
+    @endif
 
 
     <!-- modal para update -------------------------------------------------------------------------- -->

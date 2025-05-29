@@ -2,6 +2,7 @@
 
 namespace App\Livewire\AdminDashboard\Notification;
 
+use App\Models\Company;
 use App\Models\Notification;
 use App\Models\Worker;
 use Livewire\Attributes\On;
@@ -9,14 +10,46 @@ use Livewire\Component;
 
 class Notifications extends Component
 {
+    public string $buscar = '';
+    public string $company = '';
+    public string $state = '';
+
     #[On('createdNotification')]
     public function render()
     {
-        $notifications = Notification::with('machine', 'company', 'worker') -> get();
+        $notifications = Notification::select('notifications.*')
+        ->leftJoin('companies', 'notifications.company_id', '=', 'companies.id')
+        ->leftJoin('workers', 'notifications.worker_id', '=', 'workers.id')
+        ->leftJoin('users as company_users', 'companies.user_id', '=', 'company_users.id')
+        ->leftJoin('users as worker_users', 'workers.user_id', '=', 'worker_users.id')
+        ->leftJoin('machines', 'notifications.machine_id', '=', 'machines.id')
+        -> where(function($q){
+            $q -> where('company_users.name', 'like', "%{$this -> buscar}%")
+            -> orWhere('worker_users.name', 'like', "%{$this -> buscar}%")
+            -> orWhere('notifications.state', 'like', "{$this -> buscar}%");
+        })
+        ->when($this->company !== '', function ($query) {
+            $query->where('company_users.name', $this->company);
+        })
+        ->when($this->state !== '', function ($query) {
+            $query->where('notifications.state', $this->state);
+        })
+        -> get();
+
         $states = ['procesando', 'aceptada', 'cancelada', 'en espera', 'completada'];
         $workers = Worker::get();
+        $companies = Company::get();
 
-        return view('livewire.admin-dashboard.notification.notifications', compact('notifications', 'states','workers'));
+        return view('livewire.admin-dashboard.notification.notifications', compact('notifications', 'states','workers', 'companies'));
+    }
+
+
+    // quitar filtros
+    public function filtersNo()
+    {
+        $this->buscar = '';
+        $this->state = '';
+        $this->company = '';
     }
 
 

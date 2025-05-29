@@ -18,7 +18,8 @@ class Cart extends Model
     public function articles(): BelongsToMany{
         return $this -> belongsToMany(Article::class)
         -> withPivot('quantity', 'price')
-        -> withTimestamps();
+        -> withTimestamps()
+        ->withTrashed();
     }
 
     //relacion 1:1 con companies

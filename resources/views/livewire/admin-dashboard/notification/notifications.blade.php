@@ -2,11 +2,41 @@
     <div class="title">
         <h1><i class="fa-solid fa-star"></i>AVISOS<i class="fa-solid fa-star"></i></h1>
 
-        <div class="button-new">
-            @livewire('admin-dashboard.notification.create-notification')
+        <div class="head">
+            <div class="head2" style="padding-left: 0 !important;">
+                <div>
+                    <form role="search">
+                        <x-input type="search" placeholder="Buscar" aria-label="Buscar" wire:model.live="buscar"></x-input>
+                    </form>
+                </div>
+
+                <select name="state" wire:model.live="state" class="rounded px-2 py-1 border">
+                    <option value="">Todos los estados</option>
+                    @foreach ($states as $state)
+                    <option value="{{$state}}">{{$state}}</option>
+                    @endforeach
+                </select>
+
+                <select name="company" wire:model.live="company" class="rounded px-2 py-1 border">
+                    <option value="">Todas las empresas</option>
+                    @foreach ($companies as $company)
+                    <option value="{{$company-> user -> name}}">{{$company ->user -> name}}</option>
+                    @endforeach
+                    <option value="libre">Libre</option>
+                </select>
+
+                <x-button wire:click="filtersNo()">quitar filtros</x-button>
+            </div>
+
+            <div class="button-new">
+                @livewire('admin-dashboard.notification.create-notification')
+            </div>
         </div>
     </div>
 
+    @if (!count($notifications))
+        <x-self.message><i class="fa-solid fa-face-smile-wink" style="margin-right: 0.5rem;"></i>descansaa... no hay problemas</x-self.message>
+    @else
     <div class="table-container">
         <table class="list">
             <thead>
@@ -88,4 +118,5 @@
             </tbody>
         </table>
     </div>
+    @endif
 </div>

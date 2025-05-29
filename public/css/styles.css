@@ -60,3 +60,23 @@ html, body {
         padding-right: 1.5rem;
     }
 }
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 4.0625rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.head2 {
+    display: flex;
+    padding-left: 4.0625rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.head2 select {
+    width: 12rem;
+}

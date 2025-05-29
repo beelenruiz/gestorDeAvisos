@@ -3,11 +3,40 @@
 
     <div class="title">
         <h1><i class="fa-solid fa-star"></i>PRODUCTOS<i class="fa-solid fa-star"></i></h1>
-        <div class="button-new">
-            @livewire('admin-dashboard.article.create-article')
+        <div class="head">
+            <div class="head2" style="padding-left: 0 !important;">
+                <div>
+                    <form role="search">
+                        <x-input type="search" placeholder="Buscar" aria-label="Buscar" wire:model.live="buscar"></x-input>
+                    </form>
+                </div>
+
+                <select name="color" wire:model.live="color" class="rounded px-2 py-1 border">
+                    <option value="">Todos los colores</option>
+                    @foreach ($colors as $color)
+                    <option value="{{$color-> name}}">{{$color -> name}}</option>
+                    @endforeach
+                </select>
+
+                <select name="category" wire:model.live="category" class="rounded px-2 py-1 border">
+                    <option value="">Todas las categorías</option>
+                    @foreach ($categories as $category)
+                    <option value="{{$category-> name}}">{{$category -> name}}</option>
+                    @endforeach
+                </select>
+
+                <x-button wire:click="filtersNo()">quitar filtros</x-button>
+            </div>
+
+            <div class="button-new">
+                @livewire('admin-dashboard.article.create-article')
+            </div>
         </div>
     </div>
 
+    @if (!count($articles))
+    <x-self.message><i class="fa-solid fa-magnifying-glass" style="margin-right: 0.5rem;"></i>¿qué buscas? ...prueba otra vez</x-self.message>
+    @else
     <div class="content">
         <div class="mini-cards">
             @foreach ($articles as $item)
@@ -79,6 +108,7 @@
             @endforeach
         </div>
     </div>
+    @endif
     @endif
 
 
@@ -267,20 +297,20 @@
     @endif
 
 
-    <!-- modal para stock -->ç
+    <!-- modal para stock -->
     @if($modalStock)
-        <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div class="bg-white p-4 rounded-lg w-96">
-                <h2 class="text-lg font-semibold mb-3">Modificar Stock</h2>
+    <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div class="bg-white p-4 rounded-lg w-96">
+            <h2 class="text-lg font-semibold mb-3">Modificar Stock</h2>
 
-                <input type="number" wire:model="stockChange" placeholder="Ej. 5 o -3"
-                    class="w-full border rounded p-2 mb-4" />
+            <input type="number" wire:model="stockChange" placeholder="Ej. 5 o -3"
+                class="w-full border rounded p-2 mb-4" />
 
-                <div class="flex justify-end gap-2">
-                    <button wire:click="$set('modalStock', false)" class="bg-gray-300 px-4 py-2 rounded">Cancelar</button>
-                    <button wire:click="changeStock" class="bg-green-600 text-white px-4 py-2 rounded">Guardar</button>
-                </div>
+            <div class="flex justify-end gap-2">
+                <button wire:click="$set('modalStock', false)" class="bg-gray-300 px-4 py-2 rounded">Cancelar</button>
+                <button wire:click="changeStock" class="bg-green-600 text-white px-4 py-2 rounded">Guardar</button>
             </div>
         </div>
+    </div>
     @endif
 </div>

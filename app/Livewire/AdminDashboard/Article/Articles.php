@@ -22,23 +22,51 @@ class Articles extends Component
     public ?int $articleId = null;
     public bool $modalStock = false;
 
+    public string $buscar = '';
+    public string $color = '';
+    public string $category = '';
+
     #[On('createdArticle')]
     public function render()
     {
-        $articles = Article::with('colors', 'category') -> orderBy('name') -> get();
-        $trashedArticles = Article::with('colors', 'category') -> onlyTrashed()->get();
+        $articles = Article::select('articles.*')
+            ->join('categories', 'articles.category_id', '=', 'categories.id')
+            -> where(function($q){
+                $q -> where('articles.name', 'like', "%{$this -> buscar}%")
+                -> orWhere('articles.brand', 'like', "{$this -> buscar}%");
+            })
+            ->when($this->color !== '', function ($query) {
+                $query->whereHas('colors', function ($q) {
+                    $q->where('colors.name', $this->color);
+                });
+            })
+            ->when($this->category !== '', function ($query) {
+                $query->where('categories.name', $this->category);
+            })
+            ->orderBy('name')->get();
+        $trashedArticles = Article::with('colors', 'category')->onlyTrashed()->get();
 
         $colors = Color::get();
-        $categories = Category::orderBy('name') ->get();
+        $categories = Category::orderBy('name')->get();
 
-        return view('livewire.admin-dashboard.article.articles', compact('articles', 'trashedArticles', 'colors','categories'));
+        return view('livewire.admin-dashboard.article.articles', compact('articles', 'trashedArticles', 'colors', 'categories'));
+    }
+
+
+    // quitar filtros
+    public function filtersNo()
+    {
+        $this->buscar = '';
+        $this->color = '';
+        $this->category = '';
     }
 
 
     //mostrar y ocualtar productos descatalogados
     public bool $trashed = true;
 
-    public function seeTrashed(){
+    public function seeTrashed()
+    {
         $this->trashed = !$this->trashed;
     }
 
@@ -51,9 +79,10 @@ class Articles extends Component
         $this->modalStock = true;
     }
 
-    public function changeStock(){
+    public function changeStock()
+    {
         $article = Article::findOrfail($this->articleId);
-        
+
         $newStock = max(0, $article->stock + $this->stockChange);
         $article->update(['stock' => $newStock]);
 
@@ -79,10 +108,11 @@ class Articles extends Component
     }
 
 
-    public function totalDelete(int $id){
+    public function totalDelete(int $id)
+    {
         $article = Article::onlyTrashed()->find($id);
 
-        foreach ($article -> images as $image){
+        foreach ($article->images as $image) {
             if (basename($image) != 'default.png') {
                 Storage::delete($image);
             }
@@ -94,7 +124,8 @@ class Articles extends Component
 
 
     // metodo para restaurar un articulo eliminado -------------------------------
-    public function restore(int $id){
+    public function restore(int $id)
+    {
         $article = Article::onlyTrashed()->find($id);
 
         $article->restore();

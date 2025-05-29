@@ -13,13 +13,19 @@ class Categories extends Component
 {
     use WithFileUploads;
 
+    public string $buscar = '';
+
     public FormUpdateCategory $uform;
     public bool $openUpdate = false;
 
     #[On('createdCategory')]
     public function render()
     {
-        $categories = Category::orderBy('name')->get();
+        $categories = Category::orderBy('name')
+        -> where(function($q){
+            $q -> where('name', 'like', "%{$this -> buscar}%");
+        })
+        ->get();
 
         return view('livewire.admin-dashboard.category.categories', compact('categories'));
     }

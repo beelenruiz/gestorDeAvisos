@@ -2,8 +2,16 @@
     <div class="title">
         <h1><i class="fa-solid fa-star"></i>CATEGORÍAS<i class="fa-solid fa-star"></i></h1>
 
-        <div class="button-new">
-            @livewire('admin-dashboard.category.create-category')
+        <div class="head">
+            <div>
+                <form role="search">
+                    <x-input type="search" placeholder="Buscar" aria-label="Buscar" wire:model.live="buscar"></x-input>
+                </form>
+            </div>
+
+            <div class="button-new">
+                @livewire('admin-dashboard.category.create-category')
+            </div>
         </div>
     </div>
 

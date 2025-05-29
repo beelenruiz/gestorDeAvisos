@@ -1,11 +1,42 @@
 <div>
     <div class="title">
         <h1><i class="fa-solid fa-star"></i>MAQUINAS<i class="fa-solid fa-star"></i></h1>
-        <div class="button-new">
-            @livewire('admin-dashboard.machine.create-machine')
+
+        <div class="head">
+            <div class="head2" style="padding-left: 0 !important;">
+                <div>
+                    <form role="search">
+                        <x-input type="search" placeholder="Buscar" aria-label="Buscar" wire:model.live="buscar"></x-input>
+                    </form>
+                </div>
+
+                <select name="type" wire:model.live="type" class="rounded px-2 py-1 border">
+                    <option value="">Todos los tipos</option>
+                    @foreach ($types as $type)
+                    <option value="{{$type}}">{{$type}}</option>
+                    @endforeach
+                </select>
+
+                <select name="company" wire:model.live="company" class="rounded px-2 py-1 border">
+                    <option value="">Todas las empresas</option>
+                    @foreach ($companies as $company)
+                    <option value="{{$company-> user -> name}}">{{$company ->user -> name}}</option>
+                    @endforeach
+                    <option value="libre">Libre</option>
+                </select>
+
+                <x-button wire:click="filtersNo()">quitar filtros</x-button>
+            </div>
+
+            <div class="button-new">
+                @livewire('admin-dashboard.machine.create-machine')
+            </div>
         </div>
     </div>
 
+    @if (!count($machines))
+        <x-self.message><i class="fa-solid fa-magnifying-glass" style="margin-right: 0.5rem;"></i>¿qué buscas?</x-self.message>
+    @else
     <div class="content">
         <div class="mini-cards">
             @foreach ($machines as $item)
@@ -38,6 +69,7 @@
             @endforeach
         </div>
     </div>
+    @endif
 
     <div class="trashed">
         <h1>maquinas descatalogadas</h1>
@@ -48,9 +80,9 @@
 
     @if ($trashed == true)
     <div class="content">
-        <div class="mini-cards" style="background-color: #d6d9d9;">
+        <div class="mini-cards">
             @foreach ($trashedMachines as $item)
-            <div class="mini-card">
+            <div class="mini-card" style="background-color: #d6d9d9;">
                 <img src="{{Storage::url($item -> image)}}" alt="{{$item -> name}}">
                 <div class="card-content">
                     <h1>{{$item -> name}}</h1>

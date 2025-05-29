@@ -3,18 +3,46 @@
 namespace App\Livewire\AdminDashboard\Order;
 
 use App\Livewire\Forms\AdminDashboard\Order\FormUpdateOrder;
+use App\Models\Company;
 use App\Models\Order;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Orders extends Component
 {
+    public string $buscar = '';
+    public string $company = '';
+    public string $state = '';
+
     public function render()
     {
-        $orders = Order::with('company')->orderBy('date')->get();
+        $orders = Order::select('orders.*')
+        ->join('companies', 'orders.company_id', '=', 'companies.id')
+        ->join('users', 'companies.user_id', '=', 'users.id')
+        -> where(function($q){
+            $q -> where('users.name', 'like', "%{$this -> buscar}%")
+            -> orWhere('orders.id', 'like', "{$this -> buscar}%");
+        })
+        ->when($this->company !== '', function ($query) {
+            $query->where('users.name', $this->company);
+        })
+        ->when($this->state !== '', function ($query) {
+            $query->where('orders.state', $this->state);
+        })
+        ->orderBy('date')
+        ->get();
         $states = ['completado', 'aceptado', 'cancelado', 'pendiente'];
+        $companies = Company::with('user') -> get();
 
-        return view('livewire.admin-dashboard.order.orders', compact('orders', 'states'));
+        return view('livewire.admin-dashboard.order.orders', compact('orders', 'states', 'companies'));
+    }
+
+
+    // quitar filtros
+    public function filtersNo(){
+        $this -> buscar = '';
+        $this -> company = '';
+        $this -> state = '';
     }
 
 

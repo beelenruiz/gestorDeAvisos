@@ -2,11 +2,22 @@
     <div class="title">
         <h1><i class="fa-solid fa-star"></i>TRABAJADORES<i class="fa-solid fa-star"></i></h1>
 
-        <div class="button-new">
-            @livewire('admin-dashboard.worker.create-worker')
+        <div class="head">
+            <div>
+                <form role="search">
+                    <x-input type="search" placeholder="Buscar" aria-label="Buscar" wire:model.live="buscar"></x-input>
+                </form>
+            </div>
+
+            <div class="button-new">
+                @livewire('admin-dashboard.worker.create-worker')
+            </div>
         </div>
     </div>
 
+    @if (!count($workers))
+        <x-self.message><i class="fa-solid fa-face-smile-wink" style="margin-right: 0.5rem;"></i>Aqui no hay nadie... ¿contrato nuevo?</x-self.message>
+    @else
     <div class="table-container">
         <table class="list">
             <thead>
@@ -39,6 +50,7 @@
             </tbody>
         </table>
     </div>
+    @endif
 
 
     <!-- modal para update -------------------------------------------------------------------------- -->

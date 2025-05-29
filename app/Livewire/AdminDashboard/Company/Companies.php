@@ -9,13 +9,20 @@ use Livewire\Component;
 
 class Companies extends Component
 {
+    public string $buscar = '';
+
     public FormUpdateCompany $uform;
     public bool $openUpdate = false;
 
     #[On('createdCompany')]
     public function render()
     {
-        $companies = Company::with('user') -> orderBy('name') -> get();
+        $companies = Company::select('companies.*')
+            ->join('users', 'companies.user_id', '=', 'users.id')
+            ->where('users.name', 'like', '%' . $this->buscar . '%')
+            ->orderBy('users.name')
+            ->with('user')
+            ->get();
 
         return view('livewire.admin-dashboard.company.companies', compact('companies'));
     }
@@ -32,30 +39,33 @@ class Companies extends Component
     public function delete(int $id)
     {
         $company = Company::findOrfail($id);
-        $user = $company -> user;
+        $user = $company->user;
 
         $company->delete();
-        $user -> delete();
+        $user->delete();
         $this->dispatch('message', 'Empresa eliminada');
     }
 
 
     // Metodos para editar --------------------------------------------------------
-    public function edit(int $id){
+    public function edit(int $id)
+    {
         $company = Company::findOrfail($id);
-        
-        $this -> uform -> setCompany($company);
-        $this -> openUpdate = true;
+
+        $this->uform->setCompany($company);
+        $this->openUpdate = true;
     }
 
-    public function update(){
-        $this -> uform -> fromUpdateCompany();
-        $this -> cancelar();
-        $this -> dispatch('message', 'Empresa actualizada');
+    public function update()
+    {
+        $this->uform->fromUpdateCompany();
+        $this->cancelar();
+        $this->dispatch('message', 'Empresa actualizada');
     }
 
-    public function cancelar(){
+    public function cancelar()
+    {
         $this->uform->formReset();
-        $this->openUpdate=false;
+        $this->openUpdate = false;
     }
 }

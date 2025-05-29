@@ -21,6 +21,6 @@ class Intervention extends Model
 
     //relacion n:1 con machines
     public function machine(): BelongsTo {
-        return $this -> belongsTo(Machine::class);
+        return $this -> belongsTo(Machine::class)->withTrashed();
     }
 }

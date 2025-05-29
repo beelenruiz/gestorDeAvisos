@@ -17,15 +17,64 @@ class Machines extends Component
     public FormUpdateMachine $uform;
     public bool $openUpdate = false;
 
+    public string $buscar = '';
+    public string $type = '';
+    public string $company = '';
+
     #[On('createdMachine')]
     public function render()
     {
-        $machines = Machine::orderBy('name')->get();
-        $trashedMachines = Machine::onlyTrashed()->get();
+        $machines = Machine::select('machines.*')
+        ->leftJoin('companies', 'machines.company_id', '=', 'companies.id')
+        ->leftJoin('users', 'companies.user_id', '=', 'users.id')
+        -> where(function($q){
+            $q -> where('machines.name', 'like', "%{$this -> buscar}%")
+            -> orWhere('machines.n_serial', 'like', "{$this -> buscar}%");
+        })
+        ->when($this->type !== '', function ($query) {
+            $query->where('machines.type', $this->type);
+        })
+        ->when($this->company !== '', function ($query) {
+            if ($this->company === 'libre') {
+                $query->whereNull('machines.company_id');
+            } else {
+                $query->where('users.name', $this->company);
+            }
+        })
+        -> orderBy('name') ->get();
+
+        $trashedMachines = Machine::select('machines.*')
+        ->leftJoin('companies', 'machines.company_id', '=', 'companies.id')
+        ->leftJoin('users', 'companies.user_id', '=', 'users.id')
+        -> where(function($q){
+            $q -> where('machines.name', 'like', "%{$this -> buscar}%")
+            -> orWhere('machines.n_serial', 'like', "{$this -> buscar}%");
+        })
+        ->when($this->type !== '', function ($query) {
+            $query->where('machines.type', $this->type);
+        })
+        ->when($this->company !== '', function ($query) {
+            if ($this->company === 'libre') {
+                $query->whereNull('machines.company_id');
+            } else {
+                $query->where('users.name', $this->company);
+            }
+        })
+        -> orderBy('name') ->onlyTrashed() ->get();
+
         $types = ['inyeccion de tinta', 'laser', 'termica', 'matricial', '3d', 'multifuncional'];
-        $companies = Company::get();
+        $companies = Company::orderBy('name') ->get();
 
         return view('livewire.admin-dashboard.machine.machines', compact('machines', 'trashedMachines', 'types', 'companies'));
+    }
+
+
+    // quitar filtros
+    public function filtersNo()
+    {
+        $this->buscar = '';
+        $this->type = '';
+        $this->company = '';
     }
 
 

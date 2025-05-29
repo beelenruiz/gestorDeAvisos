@@ -9,13 +9,20 @@ use Livewire\Component;
 
 class Workers extends Component
 {
+    public string $buscar = '';
+
     public FormUpdateWorker $uform;
     public bool $openUpdate = false;
 
     #[On('createdWorker')]
     public function render()
     {
-        $workers = Worker::with('user') -> orderBy('name') -> get();
+        $workers = Worker::select('workers.*')
+            ->join('users', 'workers.user_id', '=', 'users.id')
+            ->where('users.name', 'like', '%' . $this->buscar . '%')
+            ->orderBy('users.name')
+            ->with('user')
+            ->get();
 
         return view('livewire.admin-dashboard.worker.workers', compact('workers'));
     }
@@ -32,30 +39,33 @@ class Workers extends Component
     public function delete(int $id)
     {
         $worker = Worker::findOrfail($id);
-        $user = $worker -> user();
+        $user = $worker->user();
 
         $worker->delete();
-        $user -> delete();
+        $user->delete();
         $this->dispatch('message', 'Empleado eliminado');
     }
 
 
     // Metodos para editar --------------------------------------------------------
-    public function edit(int $id){
+    public function edit(int $id)
+    {
         $worker = Worker::findOrfail($id);
-        
-        $this -> uform -> setWorker($worker);
-        $this -> openUpdate = true;
+
+        $this->uform->setWorker($worker);
+        $this->openUpdate = true;
     }
 
-    public function update(){
-        $this -> uform -> fromUpdateWorker();
-        $this -> cancelar();
-        $this -> dispatch('message', 'Empleado actualizado');
+    public function update()
+    {
+        $this->uform->fromUpdateWorker();
+        $this->cancelar();
+        $this->dispatch('message', 'Empleado actualizado');
     }
 
-    public function cancelar(){
+    public function cancelar()
+    {
         $this->uform->formReset();
-        $this->openUpdate=false;
+        $this->openUpdate = false;
     }
 }

@@ -15,7 +15,7 @@ class Notification extends Model
 
     //relacion n:1 con machine
     public function machine(): BelongsTo{
-        return $this -> belongsTo(Machine::class);
+        return $this -> belongsTo(Machine::class)->withTrashed();
     }
 
     //relacion n:1 con company
