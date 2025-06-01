@@ -34,6 +34,10 @@ class Orders extends Component
         return redirect() -> route('visualizer-order', ['id' => $id, 'edit' => true]);
     }
 
+    public function cancelarEdicion(int $id) {
+        return redirect() -> route('visualizer-order', ['id' => $id, 'edit' => false]);
+    }
+
 
     // metodos para cancelar ----------------------------------------------------------------------------
     public function confirmCancel(int $id) {

@@ -36,4 +36,12 @@ class Articles extends Component
 
         return view('livewire.articles', compact('articles', 'categories', 'colors'));
     }
+
+
+    // metodo para mostrar vista detalle de los productos
+    public function show(int $id){
+        $article = Article::findOrFail($id);
+
+        return view('articles.show', compact('article'));
+    }
 }

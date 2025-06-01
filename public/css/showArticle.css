@@ -1,0 +1,93 @@
+.article {
+    display: flex;
+    margin: 40px 75px;
+    gap: 75px;
+}
+
+@media (max-width: 550px) {
+    .article {
+        display: inline-block;
+        margin: 40px;
+    }
+}
+
+
+/* imagen principal del articulo */
+.article img {
+    width: 40%;
+    height: auto;
+}
+
+@media (max-width: 550px) {
+    .article img {
+        margin: auto;
+    }
+}
+
+
+/* nombre, descripcion... */
+.article-info {
+    padding: 1rem;
+}
+
+@media (max-width: 550px) {
+    .article-info {
+        text-align: center;
+    }
+}
+
+.article-info > h1 {
+    font-size: clamp(1.125rem, 5vw, 2.1875rem);
+    font-weight: bold;
+    color: #531919;
+}
+
+.article-info > p {
+    margin-top: 2rem;
+}
+
+.article-info > .colores {
+    justify-content: start;
+}
+
+@media (max-width: 550px) {
+    .article-info > .colores {
+        justify-content: center;
+    }
+}
+
+
+/* boton añadir al carrito */
+.add {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem !important;
+    width: 100%;
+    justify-content: center;
+}
+
+.add > button {
+    width: 100%;
+    max-width: 15rem;
+}
+
+
+/* galeria de imagenes */
+.images {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 2rem;
+}
+
+@media (max-width: 900px) {
+    .images {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    .images {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

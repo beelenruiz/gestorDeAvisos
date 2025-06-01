@@ -41,4 +41,17 @@ class VisualizerOrder extends Component
         $this -> order -> articles() -> detach($article -> id);
         $this -> dispatch('message', 'Articulo eliminado del pedido');
     }
+
+
+    // metodos para abrir vista de visualizer con isEditing = true ------------------------------------
+    public function edit(int $id) {
+        $order = Order::findOrFail($id);
+        $this -> authorize('update', $order);
+
+        return redirect() -> route('visualizer-order', ['id' => $id, 'edit' => true]);
+    }
+
+    public function cancelarEdicion(int $id) {
+        return redirect() -> route('visualizer-order', ['id' => $id, 'edit' => false]);
+    }
 }

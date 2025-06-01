@@ -66,7 +66,7 @@ class CartController extends Controller
         $addedArticleDetails = [
             'id' => $article->id,
             'name' => $article->name,
-            'image' =>  Storage::url($article -> images[0]),
+            'image' =>  Storage::url($article->images->first()->path),
             'quantity' => $request->quantity
         ];
 

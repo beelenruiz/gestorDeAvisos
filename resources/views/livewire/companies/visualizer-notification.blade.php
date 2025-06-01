@@ -1,61 +1,91 @@
-<div class="max-w-4xl mx-auto py-10 px-6">
-    <h1 class="text-2xl font-bold mb-6 text-gray-800">Detalle del Aviso</h1>
+<div>
+    <div class="title">
+        <h2>Detalle del Aviso</h2>
 
-    {{-- Información de la Notificación --}}
-    <div class="bg-white shadow-md rounded-2xl p-6 mb-8">
-        <h2 class="text-xl font-semibold mb-4 text-gray-700">Aviso</h2>
-        <div class="space-y-2">
-            <p><span class="font-semibold text-gray-500">Estado:</span> {{ $notification->state }}</p>
-            <p><span class="font-semibold text-gray-500">Descripción:</span> {{ $notification->description }}</p>
-        </div>
-    </div>
-
-    {{-- Información de la Empresa --}}
-    <div class="bg-white shadow-md rounded-2xl p-6 mb-8">
-        <h2 class="text-xl font-semibold mb-4 text-gray-700">Empresa</h2>
-        <div class="space-y-2">
-            <p><span class="font-semibold text-gray-500">Nombre:</span> {{ $notification->company -> user -> name }}</p>
-            <p><span class="font-semibold text-gray-500">Teléfono:</span> {{ $notification->company->phone}}</p>
-            <p><span class="font-semibold text-gray-500">Correo:</span> {{ $notification->company -> user -> email}}</p>
-        </div>
-    </div>
-
-    {{-- Información de la Máquina --}}
-    <div class="bg-white shadow-md rounded-2xl p-6 mb-8">
-        <h2 class="text-xl font-semibold mb-4 text-gray-700">Máquina</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <p><span class="font-semibold text-gray-500">Nombre:</span> {{ $notification->machine->name }}</p>
-            <p><span class="font-semibold text-gray-500">Color:</span> {{ $notification->machine->color }}</p>
-            <p><span class="font-semibold text-gray-500">N° Serie:</span> {{ $notification->machine->n_serial }}</p>
-            <p><span class="font-semibold text-gray-500">Tipo:</span> {{ $notification->machine->type }}</p>
-            @if($notification->machine->image)
-            <div class="col-span-2">
-                <span class="font-semibold text-gray-500">Imagen:</span>
-                <img src="{{ asset('storage/' . $notification->machine->image) }}" alt="Imagen de la máquina" class="mt-2 rounded-xl shadow-md h-60">
-            </div>
+        <div class="button-new">
+            @if (auth() -> user() -> company)
+            <a href="{{route('notifications')}}"><x-button><i class="fa-solid fa-arrow-left"></i></x-button></a>
+            @elseif (auth() -> user() -> admin)
+            <a href="{{route('admin-dashboard', ['seccion' => 'notifications'])}}"><x-button><i class="fa-solid fa-arrow-left"></i></x-button></a>
             @endif
         </div>
     </div>
 
-    @if (Auth::user() -> admin)
-    {{-- Información del trabajador --}}
-    <div class="bg-white shadow-md rounded-2xl p-6 mb-8">
-        <h2 class="text-xl font-semibold mb-4 text-gray-700">Trabajador asignado</h2>
-        @if ($notification -> worker_id)
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <p><span class="font-semibold text-gray-500">Nombre:</span> {{ $notification->worker -> user->name }}</p>
-            <p><span class="font-semibold text-gray-500">Email:</span> {{ $notification->worker->user->email }}</p>
+    <div class="medium-cards">
+        {{-- Información de la Notificación --}}
+        <div class="medium-card">
+            <div class="card-content">
+                <h1>Aviso</h1>
+                <div class="space-y-2">
+                    <p><span class="font-semibold text-gray-500">Estado:</span> {{ $notification->state }}</p>
+                    <p><span class="font-semibold text-gray-500">Descripción:</span> {{ $notification->description }}</p>
+                </div>
+            </div>
         </div>
-        @else
-        <select wire:change="assign({{ $notification->id }}, $event.target.value)" class="border rounded px-2 py-1">
-            <option value=""> asignar </option>
-            @foreach($workers as $worker)
-            <option value="{{$worker -> id}}">
-                {{$worker -> user -> name}}
-            </option>
-            @endforeach
-        </select>
+
+
+        {{-- Información de la Empresa --}}
+        <div class="medium-card">
+            <img src="{{$notification->company -> user -> profile_photo_url}}">
+            <div class="card-content">
+                <h1>Empresa</h1>
+                <div class="space-y-2">
+                    <p><span class="font-semibold text-gray-500">Nombre:</span> {{ $notification->company -> user -> name }}</p>
+                    <p><span class="font-semibold text-gray-500">Teléfono:</span> {{ $notification->company->phone}}</p>
+                    <p><span class="font-semibold text-gray-500">Correo:</span> {{ $notification->company -> user -> email}}</p>
+                </div>
+            </div>
+        </div>
+
+
+        {{-- Información de la Máquina --}}
+        <div class="medium-card">
+            <img src="{{Storage::url($notification->machine->image) }}">
+
+            <div class="card-content">
+                <h1>Máquina</h1>
+                <div class="space-y-2">
+                    <p><span class="font-semibold text-gray-500">Nombre:</span> {{ $notification->machine->name }}</p>
+                    <p>
+                        <span class="font-semibold text-gray-500">Color:</span>
+                        @if ($notification->machine -> color)
+                        si
+                        @else
+                        no
+                        @endif
+                    </p>
+                    <p><span class="font-semibold text-gray-500">N° Serie:</span> {{ $notification->machine->n_serial }}</p>
+                    <p><span class="font-semibold text-gray-500">Tipo:</span> {{ $notification->machine->type }}</p>
+
+                </div>
+            </div>
+        </div>
+
+
+        @if (Auth::user() -> admin)
+        {{-- Información del trabajador --}}
+        <div class="medium-card">
+            <img src="{{$notification->worker -> user -> profile_photo_url}}">
+
+            <div class="card-content">
+                <h1>Trabajador asignado</h1>
+                @if ($notification -> worker_id)
+                <div class="space-y-2">
+                    <p><span class="font-semibold text-gray-500">Nombre:</span> {{ $notification->worker -> user->name }}</p>
+                    <p><span class="font-semibold text-gray-500">Email:</span> {{ $notification->worker->user->email }}</p>
+                </div>
+                @else
+                <select wire:change="assign({{ $notification->id }}, $event.target.value)" class="border rounded px-2 py-1">
+                    <option value=""> asignar </option>
+                    @foreach($workers as $worker)
+                    <option value="{{$worker -> id}}">
+                        {{$worker -> user -> name}}
+                    </option>
+                    @endforeach
+                </select>
+                @endif
+            </div>
+        </div>
         @endif
     </div>
-    @endif
 </div>

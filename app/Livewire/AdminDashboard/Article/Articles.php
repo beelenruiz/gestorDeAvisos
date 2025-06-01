@@ -4,8 +4,10 @@ namespace App\Livewire\AdminDashboard\Article;
 
 use App\Livewire\Forms\AdminDashboard\Article\FormUpdateArticle;
 use App\Models\Article;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Color;
+use App\Models\Order;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -31,9 +33,9 @@ class Articles extends Component
     {
         $articles = Article::select('articles.*')
             ->join('categories', 'articles.category_id', '=', 'categories.id')
-            -> where(function($q){
-                $q -> where('articles.name', 'like', "%{$this -> buscar}%")
-                -> orWhere('articles.brand', 'like', "{$this -> buscar}%");
+            ->where(function ($q) {
+                $q->where('articles.name', 'like', "%{$this->buscar}%")
+                    ->orWhere('articles.brand', 'like', "{$this->buscar}%");
             })
             ->when($this->color !== '', function ($query) {
                 $query->whereHas('colors', function ($q) {
@@ -102,6 +104,13 @@ class Articles extends Component
     public function delete(int $id)
     {
         $article = Article::findOrfail($id);
+
+        Cart::where('article_id', $article->id)->delete();
+
+        $orders = Order::where('state', 'pendiente')->get();
+        foreach ($orders as $order) {
+            $order->articles()->detach($article->id);
+        }
 
         $article->delete();
         $this->dispatch('message', 'Producto Borrado');

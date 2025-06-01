@@ -6,9 +6,18 @@
     const CART_ADD_URL = "{{ route('cart.add') }}";
 </script>
 <script src="{{ asset('js/cart.js') }}"></script>
+
+<script>
+    function toggleFilter() {
+        const panel = document.querySelector('.filter');
+        panel.classList.toggle('show');
+    }
+</script>
 @endpush
 
 <div class="content">
+    <x-button class="filter-toggle lg:hidden" onclick="toggleFilter()">Filtrar</x-button>
+
     <div class="filter">
         <div class="filter-secction">
             <p>BUSCADOR</p>
@@ -40,10 +49,10 @@
 
     <div class="cards">
         @foreach ($articles as $item)
-        <a class="card">
-            <img src="{{Storage::url($item -> images -> first() -> path)}}" alt="{{$item -> name}}">
+        <div class="card">
+        <a href="{{route('article.show', $item->id)}}"><img src="{{Storage::url($item -> images -> first() -> path)}}" alt="{{$item -> name}}"></a>
             <div class="card-content">
-                <h1>{{$item -> name}}</h1>
+                <a href="{{route('article.show', $item->id)}}"><h1>{{$item -> name}}</h1></a>
                 <div class="colores">
                     @foreach ($item -> colors as $color)
                     <section style="background-color: {{$color -> color}};"></section>
@@ -51,15 +60,15 @@
                 </div>
                 <p>{{$item -> brand}}</p>
 
-                <div class="quantity-control" data-article="{{ $item->id }}">
-                    <button type="button" onclick="adjustQuantity({{ $item->id }}, -1)">−</button>
-                    <input type="number" min="1" value="1" id="quantity-{{ $item->id }}">
-                    <button type="button" onclick="adjustQuantity({{ $item->id }}, 1)">+</button>
+                <div class="quantity quantity-control z-50" data-article="{{ $item->id }}" style="margin: 10px 0;">
+                    <button type="button" class="quantity-button" onclick="adjustQuantity({{ $item->id }}, -1)">−</button>
+                    <x-input type="number" min="1" value="1" id="quantity-{{ $item->id }}" class="quantity-input" style="width: 4rem;"/>
+                    <button type="button" class="quantity-button" onclick="adjustQuantity({{ $item->id }}, 1)">+</button>
                 </div>
 
-                <span>{{$item -> price}}€</span><x-button onclick="add({{$item -> id}})">Agregar al carrito</x-button>
+                <span class="price">{{$item -> price}}€</span><x-button onclick="add({{$item -> id}})">Agregar al carrito</x-button>
             </div>
-        </a>
+        </div>
         @endforeach
     </div>
 </div>

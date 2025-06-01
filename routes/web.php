@@ -20,6 +20,11 @@ Route::get('/', function () {
 
 // vista articulos para tienda -----------------------------------------------------------
 Route::get('articles', Articles::class)->name('articles');
+Route::get('articles/article/{article}', [Articles::class, 'show'])->name('article.show');
+
+
+// carrito
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
 
 // logueados ----------------------------------------------------------------------------------------------------------
@@ -65,8 +70,4 @@ Route::middleware([
     Route::get('companies/notifications/create', CreateNotifications::class)->name('notifications.create');
     // ruta para visualizar avisos
     Route::get('/companies/notifications/visualizer-notification/{id}', VisualizerNotification::class)->name('visualizer-notification');
-
-
-    // carrito
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 });

@@ -15,7 +15,7 @@
     <div class="title">
         <h1><i class="fa-solid fa-star"></i>CARRITO DE LA COMPRA<i class="fa-solid fa-star"></i></h1>
         @if (Auth::check() && $cart && $cart->articles->isNotEmpty())
-        <div>
+        <div class="button-new">
             <x-button type="button" id="btn-empty-cart" style="display: none;">Vaciar Carrito</x-button>
         </div>
         @endif
@@ -37,10 +37,12 @@
             @foreach ($cart -> articles as $article)
             <tr>
                 <td>{{ $article->name }}</td>
-                <td>
-                    <button type="button" class="btn-update-quantity" data-article-id="{{$article->id}}" data-operation="-1">−</button>
-                    {{ $article->pivot->quantity }}
-                    <button type="button" class="btn-update-quantity" data-article-id="{{$article->id}}" data-operation="1">+</button>
+                <td class="quantity">
+                    <div class="quantity-wrapper">
+                        <button type="button" class="btn-update-quantity quantity-button" data-article-id="{{ $article->id }}" data-operation="-1">−</button>
+                        <span class="quantity-display">{{ $article->pivot->quantity }}</span>
+                        <button type="button" class="btn-update-quantity quantity-button" data-article-id="{{ $article->id }}" data-operation="1">+</button>
+                    </div>
                 </td>
                 <td>${{ number_format($article->pivot->price, 2) }}</td>
                 <td>${{ number_format($article->pivot->price * $article->pivot->quantity, 2) }}</td>
@@ -57,9 +59,11 @@
         </tbody>
     </table>
 
+    <div class="button-new">
+        <a href="{{route('articles')}}"><x-button>Seguir comprando</x-button></a>
+    </div>
+
     @else
     <x-self.message><i class="fa-solid fa-face-smile-wink" style="margin-right: 0.5rem;"></i>Aún no hay nada en tu cesta, ¿a qué esperas?</x-self.message>
     @endif
-
-    <div id="cart-notification-area" style="position: fixed; top: 20px; right: 20px; z-index: 1050;"></div>
 </x-app-layout>

@@ -55,6 +55,15 @@
     width: 100%;
 }
 
+.medium-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-between;
+    padding: 2.5rem 3rem 2.5rem 2rem;
+    gap: 2.5rem;
+    width: 100%;
+}
+
 .mini-cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
@@ -68,6 +77,10 @@
     .cards {
         padding: 2rem 2.5rem;
         gap: 2rem;
+    }
+
+    .medium-cards {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 
@@ -87,6 +100,18 @@
     padding: 1.875rem;
 }
 
+.medium-card {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 0.0625rem solid #DAD9D9;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.08);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    padding: 1rem;
+    gap: 1rem;
+}
+
 .mini-card {
     display: flex;
     align-items: center;
@@ -103,8 +128,13 @@
     margin: auto;
 }
 
-.mini-card img {
+.mini-card img, .medium-card img {
     width: 25%;
+}
+
+.medium-card > .card-content {
+    text-align: start;
+    margin: 0.5rem;
 }
 
 .card-content {
@@ -219,10 +249,46 @@
     }
 }
 
-/* precio en pagina de la tienda */
-span {
+/* precio en pagina de la tienda ------------------------------------------------------------------------------- */
+.price {
     font-size: 1rem;
     color: #000000;
     font-weight: bold;
     margin-right: 2rem;
+}
+
+
+/* Botón para mostrar el filtro en móviles */
+.filter-toggle {
+    display: none;
+    background-color: #531919;
+    color: white;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+@media (max-width: 900px) {
+    .filter-toggle {
+        display: block;
+    }
+
+    .filter {
+        display: none;
+        width: 100%;
+        padding: 1rem;
+        background-color: #fff;
+        border-top: 1px solid #ccc;
+    }
+
+    .filter.show {
+        display: block;
+    }
+
+    .content {
+        display: block;
+    }
 }

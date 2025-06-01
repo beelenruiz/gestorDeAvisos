@@ -13,7 +13,8 @@
     'padding: 0.5rem 1rem;
     font-size: 1rem;
     border-radius: 0.75rem;
-    width: 100%;',
+    width: 100%;
+    background-color: rgba(83, 25, 25, 0.2);',
     'class' => 'input-focus'
 ]) !!}>
 

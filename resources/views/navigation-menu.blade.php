@@ -15,22 +15,38 @@
                     @auth
                     @if (auth() -> user() -> admin)
                     <x-nav-link href="{{ route('admin-dashboard') }}" :active="request()->routeIs('admin-dashboard')">
-                        {{ __('Dashboard') }}
+                        <i class="fa-solid fa-house" style="margin-right: 5px;"></i>{{ __('Panel de control') }}
                     </x-nav-link>
                     @elseif (auth() -> user() -> company)
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        <i class="fa-solid fa-house" style="margin-right: 5px;"></i>{{ __('Panel de usuario') }}
                     </x-nav-link>
                     @endif
                     @endauth
 
                     <x-nav-link href="{{ route('articles') }}" :active="request()->routeIs('articles')">
-                        {{ __('articles') }}
+                        {{ __('Artículos') }}
                     </x-nav-link>
 
+                    @if (!Auth::check() || (Auth::check() && Auth::user()->company))
                     <x-nav-link href="{{ route('cart.index') }}" :active="request()->routeIs('cart.*')">
-                        {{ __('cart') }}
+                        {{ __('Cesta') }}
+                        @if (Auth::user()?->company?->cart?->articles?->count() != 0)
+                        <span style="
+                            background-color:#d9d6d6;
+                            color: #531919;
+                            border-radius: 50%;
+                            padding: 2px 6px;
+                            font-size: 0.75rem;
+                            font-weight: bold;
+                            margin-left: 5px;
+                            width: auto;
+                        ">
+                            {{ Auth::user()?->company?->cart?->articles?->count() ?? 0 }}
+                        </span>
+                        @endif
                     </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -100,14 +116,14 @@
                     @else
                     <a
                         href="{{ route('login') }}"
-                        class="inline-block px-5 py-1.5 text-[#1b1b18] border border-transparent hover:border-[#19140035] rounded-sm text-sm leading-normal">
+                        class="inline-block px-5 py-1.5 text-[#d6d9d9] border border-transparent hover:border-[#d6d9d9] rounded-sm text-sm leading-normal">
                         Log in
                     </a>
 
                     @if (Route::has('register'))
                     <a
                         href="{{ route('register') }}"
-                        class="inline-block px-5 py-1.5 border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] rounded-sm text-sm leading-normal">
+                        class="inline-block px-5 py-1.5 border-[#d6d9d9] hover:border-[#d6d9d9] border text-[#d6d9d9] rounded-sm text-sm leading-normal">
                         Register
                     </a>
                     @endif
@@ -130,27 +146,43 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-white fixed z-50 w-screen">
         <div class="pt-2 pb-3 space-y-1">
             @auth
             @if (auth() -> user() -> admin)
             <x-responsive-nav-link href="{{ route('admin-dashboard') }}" :active="request()->routeIs('admin-dashboard')">
-                {{ __('Dashboard') }}
+                <i class="fa-solid fa-house" style="margin-right: 5px;"></i>{{ __('Panel de control') }}
             </x-responsive-nav-link>
             @elseif (auth() -> user() -> company)
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                <i class="fa-solid fa-house" style="margin-right: 5px;"></i>{{ __('Panel de usuario') }}
             </x-responsive-nav-link>
             @endif
             @endauth
 
             <x-responsive-nav-link href="{{ route('articles') }}" :active="request()->routeIs('articles')">
-                {{ __('articles') }}
+                {{ __('Artículos') }}
             </x-responsive-nav-link>
 
+            @if (!Auth::check() || (Auth::check() && Auth::user()->company))
             <x-responsive-nav-link href="{{ route('cart.index') }}" :active="request()->routeIs('cart.*')">
-                {{ __('cart') }}
+                {{ __('Cesta') }}
+                @if (Auth::user()?->company?->cart?->articles?->count() != 0)
+                <span style="
+                    background-color: #531919;
+                    color:#d9d6d6;
+                    border-radius: 50%;
+                    padding: 2px 6px;
+                    font-size: 0.75rem;
+                    font-weight: bold;
+                    margin-left: 5px;
+                    width: auto;
+                ">
+                    {{ Auth::user()?->company?->cart?->articles?->count() ?? 0 }}
+                </span>
+                @endif
             </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

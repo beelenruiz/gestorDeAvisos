@@ -5,6 +5,7 @@ namespace App\Livewire\AdminDashboard\Machine;
 use App\Livewire\Forms\AdminDashboard\Machine\FormUpdateMachine;
 use App\Models\Company;
 use App\Models\Machine;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -97,6 +98,12 @@ class Machines extends Component
     public function delete(int $id)
     {
         $machine = Machine::findOrfail($id);
+
+        $notifications = Notification::where('machine_id', $machine -> id) -> get();
+
+        foreach ($notifications as $notf) {
+            $notf -> update(['state' => 'cancelada']);
+        }
 
         $machine->delete();
         $this->dispatch('message', 'Maquina Borrada');

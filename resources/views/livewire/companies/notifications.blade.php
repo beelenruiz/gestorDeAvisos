@@ -2,7 +2,8 @@
     <div class="title">
         <h1><i class="fa-solid fa-star"></i>NOTIFICACIONES<i class="fa-solid fa-star"></i></h1>
         <div class="button-new">
-        @livewire('companies.create-notifications')
+            @livewire('companies.create-notifications')
+            <a href="{{route('dashboard')}}"><x-button ><i class="fa-solid fa-house"></i></x-button></a>
         </div>
     </div>
 
