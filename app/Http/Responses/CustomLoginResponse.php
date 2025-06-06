@@ -15,8 +15,12 @@ class CustomLoginResponse implements LoginResponseContract
             return redirect()->route('admin-dashboard');
         }
 
-        if ($user->client) {
+        if ($user->company) {
             return redirect()->route('dashboard');
+        }
+
+        if ($user->worker) {
+            return redirect()->route('worker-dashboard');
         }
 
         return redirect('/');

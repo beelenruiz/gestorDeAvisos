@@ -74,7 +74,7 @@
     </div>
 
     <div class="trashed">
-        <h1>maquinas descatalogadas</h1>
+        <h1>articulos descatalogados</h1>
         <x-button wire:click="seeTrashed()">
             mostrar/ocultar
         </x-button>

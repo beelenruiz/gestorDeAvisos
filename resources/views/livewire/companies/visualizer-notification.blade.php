@@ -7,6 +7,8 @@
             <a href="{{route('notifications')}}"><x-button><i class="fa-solid fa-arrow-left"></i></x-button></a>
             @elseif (auth() -> user() -> admin)
             <a href="{{route('admin-dashboard', ['seccion' => 'notifications'])}}"><x-button><i class="fa-solid fa-arrow-left"></i></x-button></a>
+            @elseif (auth() -> user() -> worker)
+            <a href="{{route('worker-dashboard')}}"><x-button><i class="fa-solid fa-arrow-left"></i></x-button></a>
             @endif
         </div>
     </div>
@@ -84,6 +86,35 @@
                     @endforeach
                 </select>
                 @endif
+            </div>
+        </div>
+        @endif
+
+
+        @if (Auth::user() -> worker)
+        {{-- Información de la intervencion --}}
+        <div class="medium-card">
+            <div class="card-content">
+                <h1>Intervención</h1>
+                <div class="space-y-2">
+                    <p><span class="font-semibold text-gray-500">Trabajador:</span> {{ $notification->worker -> user->name }}</p>
+                    @if (!empty($notification->intervention->observations))
+                    <p>
+                        <span class="font-semibold text-gray-500">Observaciones:</span>
+                        {{ $notification->intervention->observations }}
+                    </p>
+                    <p>
+                        <span class="font-semibold text-gray-500">Duración:</span>
+                        {{ $notification->intervention->duration }} min
+                    </p>
+                    @endif
+                </div>
+
+                <div class="button-new">
+                    <a href="{{route('worker-newIntervention', ['notification_id' => $notification->id])}}"><x-button>
+                        {{$notification->state === 'en espera' ? 'Continuar' : 'Iniciar'}}
+                    </x-button></a>
+                </div>
             </div>
         </div>
         @endif

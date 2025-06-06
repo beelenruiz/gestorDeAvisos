@@ -1,6 +1,7 @@
 /* importo aqui el resto de hojas de estilos --------------------------------------------------------- */
 @import 'companyDashboard.css';
 @import 'adminDashboard.css';
+@import 'workerDashboard.css';
 @import 'lists.css';
 @import 'cards.css';
 @import 'welcome.css';

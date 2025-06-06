@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table -> enum('state', ['procesando', 'aceptada', 'cancelada', 'en espera', 'completada']) -> default('procesando');
+            $table -> enum('state', ['procesando', 'aceptada', 'cancelada', 'en espera', 'completada']) -> default('aceptada');
             $table -> string('description');
             $table -> foreignId('company_id') -> nullable() -> constrained() ->onDelete('set null');
             $table -> foreignId('machine_id') -> constrained();

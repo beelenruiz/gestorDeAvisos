@@ -11,6 +11,9 @@ use App\Livewire\Companies\Orders;
 use App\Livewire\Companies\Notifications;
 use App\Livewire\Companies\VisualizerNotification;
 use App\Livewire\Companies\VisualizerOrder;
+use App\Livewire\WorkerDashboard\CreateIntervention;
+use App\Livewire\WorkerDashboard\Machines;
+use App\Livewire\WorkerDashboard\Main as WorkerDashboardMain;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -58,7 +61,17 @@ Route::middleware([
     Route::middleware(['role:admin'])->group(function () {
         // rutas admin
         Route::get('/admin-dashboard', Main::class)->name('admin-dashboard');
-        Route::get('/admin-dashboard/categories', Categories::class);
+    });
+
+
+    // solo worker
+    Route::middleware(['role:worker'])->group(function () {
+        // rutas worker
+        Route::get('/worker-dashboard', WorkerDashboardMain::class)->name('worker-dashboard');
+        Route::get('/worker-dashboard/machines', Machines::class)->name('worker-machines');
+        Route::get('/worker-dashboard/machines/history/{id}', [Machines::class, 'openHistory'])->name('worker-history');
+        Route::get('/worker-dashboard/intervention/{notification_id?}', CreateIntervention::class)->name('worker-newIntervention');
+        Route::get('/worker-dashboard/intervention/{id}/complete', [CreateIntervention::class, 'complete']) -> name('completeIntervention');
     });
 
 

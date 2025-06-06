@@ -21,6 +21,10 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         <i class="fa-solid fa-house" style="margin-right: 5px;"></i>{{ __('Panel de usuario') }}
                     </x-nav-link>
+                    @elseif (auth() -> user() -> worker)
+                    <x-nav-link href="{{ route('worker-dashboard') }}" :active="request()->routeIs('worker-dashboard')">
+                        <i class="fa-solid fa-house" style="margin-right: 5px;"></i>{{ __('Panel de control') }}
+                    </x-nav-link>
                     @endif
                     @endauth
 
@@ -156,6 +160,10 @@
             @elseif (auth() -> user() -> company)
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 <i class="fa-solid fa-house" style="margin-right: 5px;"></i>{{ __('Panel de usuario') }}
+            </x-responsive-nav-link>
+            @elseif (auth() -> user() -> worker)
+            <x-responsive-nav-link href="{{ route('worker-dashboard') }}" :active="request()->routeIs('worker-dashboard')">
+                <i class="fa-solid fa-house" style="margin-right: 5px;"></i>{{ __('Panel de control') }}
             </x-responsive-nav-link>
             @endif
             @endauth

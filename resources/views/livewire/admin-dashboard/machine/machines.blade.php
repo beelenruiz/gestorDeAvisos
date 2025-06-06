@@ -52,7 +52,7 @@
                         <section> blanco/negro </section>
                         @endif
                     </div>
-                    <p> {{$item -> n_serial}} </p>
+                    <p> {{$item -> n_serial}}<br>{{$item -> user_name}} </p>
                     @if ($item -> company_id == null)
                     <div class="state bg-green-500"></div>libre
                     @endif

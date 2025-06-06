@@ -25,6 +25,7 @@
 
             <p>{{$article -> brand}}</p>
 
+            @if (!Auth::check() || (Auth::check() && Auth::user()->company))
             <div class="add">
                 <div class="quantity quantity-control z-50" data-article="{{ $article->id }}">
                     <button type="button" class="quantity-button" onclick="adjustQuantity({{ $article->id }}, -1)">−</button>
@@ -34,6 +35,9 @@
 
                 <x-button onclick="add({{$article -> id}})">{{$article -> price}}€</x-button>
             </div>
+            @else
+            <p>{{$article -> price}}€</p>
+            @endif
         </div>
     </div>
 

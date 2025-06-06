@@ -25,7 +25,7 @@ class Machines extends Component
     #[On('createdMachine')]
     public function render()
     {
-        $machines = Machine::select('machines.*')
+        $machines = Machine::select('machines.*', 'users.name as user_name')
         ->leftJoin('companies', 'machines.company_id', '=', 'companies.id')
         ->leftJoin('users', 'companies.user_id', '=', 'users.id')
         -> where(function($q){

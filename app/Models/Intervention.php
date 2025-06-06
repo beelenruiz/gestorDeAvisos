@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Intervention extends Model
 {
-    protected $fillable = ['worker_id', 'notification_id', 'machine_id', 'duration'];
+    protected $fillable = ['worker_id', 'notification_id', 'machine_id', 'observations', 'started_at', 'ended_at', 'duration'];
+
+    protected $casts = [
+        'started_at' => 'datetime',
+        'ended_at' => 'datetime',
+    ];
 
     //relacion 1:1 con notifications
     public function notification(): BelongsTo {

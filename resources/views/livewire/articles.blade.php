@@ -60,6 +60,7 @@
                 </div>
                 <p>{{$item -> brand}}</p>
 
+                @if (!Auth::check() || (Auth::check() && Auth::user()->company))
                 <div class="quantity quantity-control z-50" data-article="{{ $item->id }}" style="margin: 10px 0;">
                     <button type="button" class="quantity-button" onclick="adjustQuantity({{ $item->id }}, -1)">−</button>
                     <x-input type="number" min="1" value="1" id="quantity-{{ $item->id }}" class="quantity-input" style="width: 4rem;"/>
@@ -67,6 +68,9 @@
                 </div>
 
                 <span class="price">{{$item -> price}}€</span><x-button onclick="add({{$item -> id}})">Agregar al carrito</x-button>
+                @else
+                <p>{{$item -> price}}€</p>
+                @endif
             </div>
         </div>
         @endforeach

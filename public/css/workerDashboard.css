@@ -1,0 +1,40 @@
+.worker-dashboard {
+    padding: 3rem;
+}
+
+@media (max-width: 550px) {
+    .worker-dashboard {
+        padding: 1.5rem;
+    }
+}
+
+.summary {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 100%;
+}
+
+.summary > div {
+    color: #531919;
+    background-color: #d6d9d9;
+    padding: 1.5rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.summary > div > h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: clamp(1.5rem, 3vw, 3rem);
+}
+
+.summary > div > h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: clamp(1rem, 2.2vw, 1.5rem);
+}

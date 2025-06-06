@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('interventions', function (Blueprint $table) {
             $table->id();
             $table -> foreignId('worker_id') -> constrained() ->onDelete('set null');
-            $table -> foreignId('notification_id') -> constrained() -> onDelete('cascade');
-            $table -> foreignId('machine_id') -> constrained() ->onDelete('set null');
+            $table -> foreignId('notification_id') -> nullable() -> constrained() -> onDelete('cascade');
+            $table -> foreignId('machine_id') -> constrained() ->onDelete('cascade');
+            $table -> text('observations');
+            $table->timestamp('started_at')->nullable();
+            $table->timestamp('ended_at')->nullable();
             $table -> integer('duration');
             $table->timestamps();
         });
