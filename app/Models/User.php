@@ -29,6 +29,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'socialite_provider',
+        'socialite_id',
+        'socialite_token',
+        'socialite_refresh_token'
+
     ];
 
     /**

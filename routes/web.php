@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CompanyDashboardController;
 use App\Livewire\AdminDashboard\Category\Categories;
@@ -28,6 +29,11 @@ Route::get('articles/article/{article}', [Articles::class, 'show'])->name('artic
 
 // carrito
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+
+
+//socialite 
+Route::get('auth/github/redirect', [GithubController::class, 'redirect']) -> name('github.redirect');
+Route::get('auth/github/callback', [GithubController::class, 'callback']) -> name('github.callback');
 
 
 // logueados ----------------------------------------------------------------------------------------------------------
