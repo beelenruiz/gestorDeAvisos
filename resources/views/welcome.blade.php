@@ -5,7 +5,7 @@
 <x-app-layout>
    <div>
       <div>
-         <img style="margin: auto; height: 150; margin-bottom: 15;" src="{{asset('images/image.png')}}">
+         <img style="margin: auto; height: 150; margin-bottom: 15;" src="{{Storage::url('images/image.png')}}">
       </div>
 
       <div class="scroll-layout">
@@ -13,10 +13,10 @@
 
          <div class="carousel">
             <ul class="images-carousel">
-               <li><img src="{{asset('images/carrousel/imagen1.png')}}"></li>
-               <li><img src="{{asset('images/carrousel/imagen2.png')}}"></li>
-               <li><img src="{{asset('images/carrousel/imagen3.png')}}"></li>
-               <li><img src="{{asset('images/carrousel/imagen4.png')}}"></li>
+               <li><img src="{{Storage::url('images/carrousel/imagen1.png')}}"></li>
+               <li><img src="{{Storage::url('images/carrousel/imagen2.png')}}"></li>
+               <li><img src="{{Storage::url('images/carrousel/imagen3.png')}}"></li>
+               <li><img src="{{Storage::url('images/carrousel/imagen4.png')}}"></li>
             </ul>
          </div>
 

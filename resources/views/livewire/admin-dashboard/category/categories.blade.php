@@ -35,7 +35,7 @@
                 @foreach ($categories as $item)
                 <tr>
                     <td>{{$item -> id}}</td>
-                    <td><img class="icon" src="{{asset($item -> icon)}}" alt="icono de la categoria {{$item -> name}}"></td>
+                    <td><img class="icon" src="{{Storage::url($item -> icon)}}" alt="icono de la categoria {{$item -> name}}"></td>
                     <td>{{$item -> name}}</td>
                     <td class="description">{{Str::limit($item -> description, 70)}}</td>
                     <td class="botones">

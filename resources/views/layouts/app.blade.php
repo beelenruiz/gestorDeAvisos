@@ -19,7 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-    <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" />
+    <link rel="shortcut icon" href="{{ Storage::url('images/logo.png') }}" />
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])

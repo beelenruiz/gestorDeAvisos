@@ -43,8 +43,8 @@ class Categories extends Component
     {
         $category = Category::findOrfail($id);
 
-        if(basename($category->image)!='default.png'){
-            Storage::delete($category->image);
+        if(basename($category->icon)!='default.png'){
+            Storage::delete($category->icon);
         }
 
         $category->delete();
