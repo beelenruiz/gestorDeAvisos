@@ -23,8 +23,8 @@
             <thead>
                 <tr>
                     <th max-width="300px">id</th>
-                    <th width="300px">nombre</th>
-                    <th width="300px">email</th>
+                    <th>nombre</th>
+                    <th>email</th>
                     <th class="botones"></th>
                 </tr>
             </thead>

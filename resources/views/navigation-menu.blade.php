@@ -166,6 +166,18 @@
                 <i class="fa-solid fa-house" style="margin-right: 5px;"></i>{{ __('Panel de control') }}
             </x-responsive-nav-link>
             @endif
+            @else
+            @if (Route::has('login'))
+                <x-responsive-nav-link href="{{ route('login') }}">
+                    {{ __('Log in') }}
+                </x-responsive-nav-link>
+
+                @if (Route::has('register'))
+                    <x-responsive-nav-link href="{{ route('register') }}">
+                        {{ __('Register') }}
+                    </x-responsive-nav-link>
+                @endif
+            @endif
             @endauth
 
             <x-responsive-nav-link href="{{ route('articles') }}" :active="request()->routeIs('articles')">

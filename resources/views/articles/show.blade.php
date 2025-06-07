@@ -27,13 +27,13 @@
 
             @if (!Auth::check() || (Auth::check() && Auth::user()->company))
             <div class="add">
-                <div class="quantity quantity-control z-50" data-article="{{ $article->id }}">
+                <div style="white-space: nowrap;" class="quantity quantity-control z-50" data-article="{{ $article->id }}">
                     <button type="button" class="quantity-button" onclick="adjustQuantity({{ $article->id }}, -1)">−</button>
                     <x-input type="number" min="1" value="1" id="quantity-{{ $article->id }}" class="quantity-input" style="width: 4rem;"/>
                     <button type="button" class="quantity-button" onclick="adjustQuantity({{ $article->id }}, 1)">+</button>
                 </div>
 
-                <x-button onclick="add({{$article -> id}})">{{$article -> price}}€</x-button>
+                <x-button style="width: auto;" onclick="add({{$article -> id}})">{{$article -> price}}€</x-button>
             </div>
             @else
             <p>{{$article -> price}}€</p>

@@ -15,9 +15,9 @@
             <thead>
                 <tr>
                     <th max-width="300px">id</th>
-                    <th width="300px">fecha</th>
-                    <th width="300px">estado</th>
-                    <th width="300px">precio</th>
+                    <th>fecha</th>
+                    <th>estado</th>
+                    <th>precio</th>
                     <th class="botones"></th>
                 </tr>
             </thead>

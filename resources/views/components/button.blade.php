@@ -1,4 +1,5 @@
-<button style="
+<style>
+    .x-button {
         font-size: 1rem; 
         text-align: center; 
         color: #fff; 
@@ -7,7 +8,18 @@
         border-radius: 0.5rem;
         cursor: pointer;
         font-weight: 600;
-        margin: 5px;"
+        margin: 5px;
+    }
+
+    @media (max-width: 600px) {
+        .x-button {
+            font-size: 12px;
+            padding: 3px 6px;
+        }
+    }
+</style>
+
+<button class="x-button"
     {{ $attributes->merge([ 'type' => 'submit']) }}
 >
     {{ $slot }}

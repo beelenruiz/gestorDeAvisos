@@ -5,6 +5,7 @@
 /public/storage
 /storage/*.key
 /storage/pail
+/storage/app/livewire-tmp/
 /vendor
 .env
 .env.backup

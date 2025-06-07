@@ -15,6 +15,16 @@ table {
     border-collapse: collapse;
 }
 
+
+@media (max-width: 600px) {
+    table {
+      font-size: 12px;
+    }
+    th, td {
+      padding: 4px 6px;
+    }
+}
+
 /* otro formato */
 .list {
     text-align: left;

@@ -28,7 +28,7 @@ html, body {
 .title > h1 {
     color: #531919;
     font-weight: bold;
-    font-size: clamp(2.25rem, 5vw, 3.1875rem);
+    font-size: clamp(2rem, 5vw, 3.1875rem);
     text-align: center;
     white-space: nowrap
 }
@@ -89,4 +89,13 @@ html, body {
 
 .head2 select {
     width: 12rem;
+}
+
+
+
+@media (max-width: 600px) {
+    select {
+      font-size: 12px;  /* Texto un poco más pequeño en móvil */
+      padding: 3px 6px;
+    }
 }

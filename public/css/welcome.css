@@ -1,36 +1,64 @@
 .scroll-layout {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
   
-  .carousel {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    width: 90vw;
-    border-radius: 10px;
-    margin: auto;
-  }
+.carousel {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  width: 90vw;
+  border-radius: 10px;
+  margin: auto;
+}
   
-  .images-carousel {
-    display: flex;
-    gap: 15px;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
+.images-carousel {
+  display: flex;
+  gap: 15px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
   
-  .images-carousel > li {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-  }
+.images-carousel > li {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  width: 90vw;
+  max-width: 942px;
+}
   
-  .images-carousel > img {
-    height: 400px;
-    width: 942px;
-    object-fit: cover;
-    border-radius: 12px;
-  }
+.images-carousel > li > img {
+  max-height: 400px;
+  max-width: 942px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
 
   
+
+
+.scroll-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.scroll-btn i {
+  color: #490e0e;
+  margin: 10px;
+  font-size: 2rem; 
+}
+
+
+@media (max-width: 600px) {
+  .scroll-btn i {
+    font-size: 1.2rem;
+    margin: 5px;
+  }
+}

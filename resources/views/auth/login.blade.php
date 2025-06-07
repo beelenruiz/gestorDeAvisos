@@ -39,9 +39,9 @@
                     </a>
                 @endif
 
-                <a href="{{route('github.redirect')}}" class="ml-2 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150">
+                <a href="{{route('github.redirect')}}" ><x-button>
                     <i class="fa-brands fa-github mr-2"></i> GitHub
-                </a>
+                </x-button></a>
 
                 <x-button class="ms-4">
                     {{ __('Log in') }}

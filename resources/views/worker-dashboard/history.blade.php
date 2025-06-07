@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="title">
-        <h1>Historial: {{$machine -> name}}</h1>
+        <h1 style="white-space: normal;">Historial: <br>{{$machine -> name}}</h1>
 
         <div class="button-new">
 

@@ -1,6 +1,4 @@
 <div>
-    <x-button class="menu-toggle-button" id="menuToggle">☰</x-button>
-
     <div class="title">
         <h1><i class="fa-solid fa-star"></i>PRODUCTOS<i class="fa-solid fa-star"></i></h1>
         <div class="head">

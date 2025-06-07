@@ -42,7 +42,7 @@
 
         {{-- Información de la Máquina --}}
         <div class="medium-card">
-            <img src="{{Storage::url($notification->machine->image) }}">
+            <img src="{{asset($notification->machine->image) }}">
 
             <div class="card-content">
                 <h1>Máquina</h1>

@@ -13,7 +13,7 @@
     <div class="cards">
         @foreach ($machines as $item)
         <div class="card">
-            <img src="{{Storage::url($item -> image)}}" alt="{{$item -> name}}">
+            <img src="{{asset($item -> image)}}" alt="{{$item -> name}}">
             <div class="card-content">
                 <h1>{{$item -> name}}</h1>
                 <div class="info-machine">

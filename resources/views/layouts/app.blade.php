@@ -18,6 +18,9 @@
     <!-- CDn SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
+    <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" />
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -45,7 +48,7 @@
         @endif
 
         <!-- Page Content -->
-        <main>
+        <main style="min-height: screen;">
             {{ $slot }}
         </main>
     </div>

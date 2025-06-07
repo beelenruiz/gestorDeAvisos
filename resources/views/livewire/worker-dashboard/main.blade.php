@@ -55,52 +55,44 @@
     </div>
     <div class="table-container">
         @if ($tablesVisible[$state])
-        <table class="list" style="margin-top: 0.5rem;">
-            <thead style="background-color: #531919; color: #fff;">
-                <tr>
-                    <th max-width="300px">id</th>
-                    <th width="300px">fecha</th>
-                    <th width="300px">estado</th>
-                    <th class="machine">maquina</th>
-                    <th class="machine">empresa</th>
-                    <th class="botones"></th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @foreach ($grouped[$state] as $item)
-                <tr>
-                    <td>{{$item -> id}}</td>
-                    <td>{{$item -> created_at -> format('d M, Y')}}</td>
-                    <td>
-                        <div @class([ 'state' , 'bg-green-500'=> $item -> state == 'completada',
-                            'bg-blue-500' => $item -> state == 'aceptada',
-                            'bg-red-600' => $item -> state == 'cancelada',
-                            'bg-orange-400' => $item -> state == 'procesando',
-                            'bg-pink-400' => $item -> state == 'en espera',
-                            ])></div>
-                        {{$item -> state}}
-                    </td>
-                    <td class="machine">{{$item -> machine -> name}}</td>
-                    <td class="machine">
-                        @if ($item -> company_id)
-                        {{$item -> company -> user -> name}}
+        <div class="cards">
+            @foreach ($grouped[$state] as $item)
+            <div class="card">
+                <div class="card-content">
+                    <h1>Aviso #{{ $item->id }}</h1>
+                    <div>
+                        <p><strong>Fecha:</strong> {{ $item->created_at->format('d M, Y') }}</p>
+                        <p>
+                            <strong>Estado:</strong>
+                            <span style="
+                            display: inline-block; 
+                            width: 12px; 
+                            height: 12px; 
+                            border-radius: 50%; 
+                            background-color: 
+                                {{ $item->state == 'completada' ? '#22c55e' : 
+                                ($item->state == 'aceptada' ? '#3b82f6' : 
+                                ($item->state == 'cancelada' ? '#dc2626' : 
+                                ($item->state == 'procesando' ? '#f97316' : '#ec4899'))) }};
+                            margin-right: 5px;
+                        "></span>
+                            {{ $item->state }}
+                        </p>
+                        <p><strong>Máquina:</strong> {{ $item->machine->name }}</p>
+                        <p><strong>Empresa:</strong> {{ $item->company_id ? $item->company->user->name : 'N/A' }}</p>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        @if ($item->state == 'en espera')
+                        <a href="{{ route('completeIntervention', ['id' => $item->id]) }}" style="margin-right: 1rem;">
+                            <x-button>Completar</x-button>
+                        </a>
                         @endif
-                    </td>
-                    <td class="botones">
-                        @if ($item -> state == 'en espera')
-                        <div>
-                            <a href="{{route('completeIntervention', ['id' => $item->id])}}"><button class="font-medium text-blue-700/90 hover:underline">
-                                completar
-                            </button></a>
-                        </div>
-                        @endif
-                        <x-button wire:click="visualize({{$item -> id}})">ver aviso</x-button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                        <x-button wire:click="visualize({{ $item->id }})">Ver aviso</x-button>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
         @endif
     </div>
     @endif

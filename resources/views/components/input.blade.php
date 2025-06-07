@@ -6,6 +6,13 @@
         outline: none;
         box-shadow: 0 0 0 2px rgba(83, 25, 25, 0.5);
     }
+
+    @media (max-width: 600px) {
+        .input-focus {
+            font-size: 12px !important;
+            padding: 3px 6px !important;
+        }
+    }
 </style>
 
 <input {{ $disabled ? 'disabled' : '' }} 

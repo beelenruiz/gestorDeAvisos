@@ -30,8 +30,14 @@ class FormCreateArticle extends Form
     #[Rule(['required', 'array', 'exists:colors,id'])]
     public array $colors = [];
 
-    #[Rule(['required', 'array', 'nullable'])]
+    #[Rule(['array', 'nullable'])]
     public array $images = [];
+
+    public function rules(): array {
+        return [
+            'images.*' => ['image', 'max:2048'],
+        ];
+    }
 
 
     public function formStoreArticle()

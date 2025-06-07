@@ -37,9 +37,9 @@
                 <tr>
                     <th max-width="300px">id</th>
                     <th></th>
-                    <th width="300px">state</th>
+                    <th>state</th>
                     <th max-width="300px">price</th>
-                    <th width="300px">empresa</th>
+                    <th>empresa</th>
                     <th class="botones"></th>
                 </tr>
             </thead>

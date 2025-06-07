@@ -1,12 +1,10 @@
 <div class="admin-dashboard">
-    <x-button class="menu-toggle-button" id="menuToggle">☰</x-button>
+    <button class="menu-toggle-button" id="menuToggle">☰</button>
 
     <div class="aside">
         <aside id="aside">
             <ul>
                 <li wire:click="setView('dashboard')"><i class="fa-solid fa-house-user"></i>Dashboard</li>
-                <hr />
-                <li wire:click="setView('dashboard')">Dashboard</li>
                 <hr />
                 <hr />
                 <li wire:click="setView('orders')"><i class="fa-solid fa-basket-shopping"></i>Pedidos</li>
@@ -32,8 +30,6 @@
 
     <div class="admin-content">
         @if ($view === 'dashboard')
-        
-        @elseif ($view === 'dashboard')
         
         @elseif ($view === 'orders')
         @livewire('admin-dashboard.order.orders')
