@@ -223,7 +223,7 @@ Livewire.on('onDeleteWorker', id => {
 
 
 // borrar articles de admin dashboard ----------------------------------------------------------------
-Livewire.on('onDeleteArticle', id => {
+Livewire.on('onDeleteArticleA', id => {
     Swal.fire({
         title: "¿Estás seguro?",
         text: "Este artículo será marcado como descatalogado. ¡Podrás revertirlo luego!",

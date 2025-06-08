@@ -64,7 +64,7 @@
         </div>
 
 
-        @if (Auth::user() -> admin)
+        @if (Auth::user() -> admin && $notification -> worker)
         {{-- Información del trabajador --}}
         <div class="medium-card">
             <img src="{{$notification->worker -> user -> profile_photo_url}}">

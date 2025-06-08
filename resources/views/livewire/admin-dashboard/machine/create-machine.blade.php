@@ -52,7 +52,7 @@
 
             {{-- tipo --}}
             <div>
-                <x-label for="type" class="block text-sm font-medium text-gray-700">Tipo de Curso</x-label>
+                <x-label for="type" class="block text-sm font-medium text-gray-700">Tipo</x-label>
                 <div class="mt-1 relative">
                     <select id="type" name="type" wire:model="cform.type"
                         class="block w-full pr-10 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -91,7 +91,7 @@
 
             {{-- company_id --}}
             <div>
-                <x-label for="company_id" class="block text-sm font-medium text-gray-700">Tipo de Curso</x-label>
+                <x-label for="company_id" class="block text-sm font-medium text-gray-700 mt-2">Empresa (si tiene)</x-label>
                 <div class="mt-1 relative">
                     <select id="type" name="company_id" wire:model="cform.company_id"
                         class="block w-full pr-10 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">

@@ -97,7 +97,7 @@ class Articles extends Component
     public function confirmDelete(int $id)
     {
         $article = Article::findOrfail($id);
-        $this->dispatch('onDeleteArticle', $id);
+        $this->dispatch('onDeleteArticleA', $id);
     }
 
     #[On('yesDelete')]

@@ -57,7 +57,7 @@
 
     <!-- modal para update -------------------------------------------------------------------------- -->
     @if ($uform -> company != null)
-    <x-dialog-modal wire:model="openCreate">
+    <x-dialog-modal wire:model="openUpdate">
         <x-slot name="title">
             NUEVA EMPRESA
         </x-slot>

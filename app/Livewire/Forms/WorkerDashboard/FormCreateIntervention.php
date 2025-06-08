@@ -22,7 +22,7 @@ class FormCreateIntervention extends Form
     public string $observations = '';
 
     public ?Carbon $started_at = null;
-    public ?Intervention $intervention;
+    public ?Intervention $intervention = null;
 
 
     public function initialize(?int $notification_id = null)
@@ -65,6 +65,7 @@ class FormCreateIntervention extends Form
             $this->started_at = Carbon::now();
             $this->notification_id = null;
             $this->machine_id = null;
+            $this->intervention = null;
             $this->observations = '';
         }
         $this->resetValidation();

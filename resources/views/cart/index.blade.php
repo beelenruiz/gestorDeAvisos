@@ -13,54 +13,57 @@
 <x-app-layout>
 
     <div class="title">
-        <h1><i class="fa-solid fa-star"></i>CARRITO DE LA COMPRA<i class="fa-solid fa-star"></i></h1>
+        <h1><i class="fa-solid fa-star" aria-hidden="true"></i>CARRITO DE LA COMPRA<i class="fa-solid fa-star" aria-hidden="true"></i></h1>
         @if (Auth::check() && $cart && $cart->articles->isNotEmpty())
         <div class="button-new">
-            <x-button type="button" id="btn-empty-cart" style="display: none;">Vaciar Carrito</x-button>
+            <x-button type="button" id="btn-empty-cart" aria-label="Vaciar carrito de la compra">Vaciar Carrito</x-button>
         </div>
         @endif
     </div>
 
     @if (Auth::check() && $cart && $cart->articles->isNotEmpty())
-    <table>
-        <thead>
-            <tr>
-                <th max-width="300px">articulo</th>
-                <th width="300px">cantidad</th>
-                <th width="300px">precio unitario</th>
-                <th width="300px">precio total</th>
-                <th class="botones"></th>
-                <th class="botones"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($cart -> articles as $article)
-            <tr>
-                <td>{{ $article->name }}</td>
-                <td class="quantity">
-                    <div class="quantity-wrapper">
-                        <button type="button" class="btn-update-quantity quantity-button" data-article-id="{{ $article->id }}" data-operation="-1">−</button>
-                        <span class="quantity-display">{{ $article->pivot->quantity }}</span>
-                        <button type="button" class="btn-update-quantity quantity-button" data-article-id="{{ $article->id }}" data-operation="1">+</button>
-                    </div>
-                </td>
-                <td>${{ number_format($article->pivot->price, 2) }}</td>
-                <td>${{ number_format($article->pivot->price * $article->pivot->quantity, 2) }}</td>
-                <td>
-                    <button type="button" class="btn-remove-from-cart font-medium text-red-700/90 hover:underline" data-article-id="{{$article->id}}">
-                        eliminar
-                    </button>
-                </td>
-            </tr>
-            @endforeach
-            <tr>
-                <td colspan="5"><strong>Total:</strong> ${{number_format($cart -> total_price, 2)}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-container">
+        <table aria-label="Cesta de la compra">
+        <caption class="sr-only">Tabla con los productos del carrito de la compra</caption>
+            <thead>
+                <tr>
+                    <th scope="col" max-width="300px">articulo</th>
+                    <th scope="col" width="300px">cantidad</th>
+                    <th scope="col" width="300px">precio unitario</th>
+                    <th scope="col" width="300px">precio total</th>
+                    <th scope="col" class="botones"></th>
+                    <th scope="col" class="botones"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($cart -> articles as $article)
+                <tr>
+                    <td>{{ $article->name }}</td>
+                    <td class="quantity">
+                        <div class="quantity-wrapper">
+                            <button type="button" class="btn-update-quantity quantity-button" data-article-id="{{ $article->id }}" data-operation="-1" aria-label="Disminuir cantidad de {{ $article->name }}">−</button>
+                            <span class="quantity-display">{{ $article->pivot->quantity }}</span>
+                            <button type="button" class="btn-update-quantity quantity-button" data-article-id="{{ $article->id }}" data-operation="1" aria-label="Aumentar cantidad de {{ $article->name }}">+</button>
+                        </div>
+                    </td>
+                    <td>${{ number_format($article->pivot->price, 2) }}</td>
+                    <td>${{ number_format($article->pivot->price * $article->pivot->quantity, 2) }}</td>
+                    <td>
+                        <button type="button" class="btn-remove-from-cart font-medium text-red-700/90 hover:underline" data-article-id="{{$article->id}}" aria-label="Eliminar {{ $article->name }} del carrito">
+                            eliminar
+                        </button>
+                    </td>
+                </tr>
+                @endforeach
+                <tr>
+                    <td colspan="5"><strong>Total:</strong> ${{number_format($cart -> total_price, 2)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div class="button-new">
-        <a href="{{route('articles')}}"><x-button>Seguir comprando</x-button></a>
+        <x-button href="{{route('articles')}}">Seguir comprando</x-button>
     </div>
 
     @else

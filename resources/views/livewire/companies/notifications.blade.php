@@ -3,23 +3,24 @@
         <h1><i class="fa-solid fa-star"></i>AVISOS<i class="fa-solid fa-star"></i></h1>
         <div class="button-new">
             @livewire('companies.create-notifications')
-            <a href="{{route('dashboard')}}"><x-button ><i class="fa-solid fa-house"></i></x-button></a>
+            <x-button href="{{route('dashboard')}}" aria-label="Pulsa para ir al panel de usuario"><i class="fa-solid fa-house" aria-hidden="true"></i></x-button>
         </div>
     </div>
 
     @if (!count($notifications))
-        <x-self.message><i class="fa-solid fa-face-smile-wink" style="margin-right: 0.5rem;"></i>Parece que no has tenido ningun problema... ¿o si?</x-self.message>
+        <x-self.message><i class="fa-solid fa-face-smile-wink" aria-hidden="true" style="margin-right: 0.5rem;"></i>Parece que no has tenido ningun problema... ¿o si?</x-self.message>
     @else
     <div class="table-container">
-        <table>
+        <table aria-label="Listado de avisos">
+        <caption class="sr-only">Tabla con los avisos creados por el usuario</caption>
             <thead>
                 <tr>
-                    <th max-width="300px">id</th>
-                    <th width="300px">fecha</th>
-                    <th class="description">descripción</th>
-                    <th width="300px">estado</th>
-                    <th class="machine">maquina</th>
-                    <th class="botones"></th>
+                    <th scope="col" max-width="300px">id</th>
+                    <th scope="col" width="300px">fecha</th>
+                    <th scope="col" class="description">descripción</th>
+                    <th scope="col" width="300px">estado</th>
+                    <th scope="col" class="machine">maquina</th>
+                    <th scope="col" class="botones"></th>
                 </tr>
             </thead>
 
@@ -41,12 +42,12 @@
                     <td class="botones">
                         @if ($item -> state == 'procesando')
                         <div class="flex justify-content-center">
-                            <button wire:click="confirmCancel({{$item -> id}})" class="font-medium text-red-700/90 hover:underline">
+                            <button wire:click="confirmCancel({{$item -> id}})" aria-label="Cancelar aviso aún no aceptado" class="font-medium text-red-700/90 hover:underline">
                                 cancelar
                             </button>
                         </div>
                         @endif
-                        <x-button wire:click="visualize({{$item -> id}})">ver aviso</x-button>
+                        <x-button wire:click="visualize({{$item -> id}})" aria-label="Ver detalles del aviso">ver aviso</x-button>
                     </td>
                 </tr>
                 @endforeach

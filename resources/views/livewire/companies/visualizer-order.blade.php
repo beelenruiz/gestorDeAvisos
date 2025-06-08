@@ -12,23 +12,24 @@
             @endif
 
             @if (auth() -> user() -> company)
-            <a href="{{route('orders')}}"><x-button><i class="fa-solid fa-arrow-left"></i></x-button></a>
+            <x-button href="{{route('orders')}}"><i class="fa-solid fa-arrow-left" aria-label="Ir al panel del usuario"></i></x-button>
             @elseif (auth() -> user() -> admin)
-            <a href="{{route('admin-dashboard', ['seccion' => 'orders'])}}"><x-button><i class="fa-solid fa-arrow-left"></i></x-button></a>
+            <x-button href="{{route('admin-dashboard', ['seccion' => 'orders'])}}"><i class="fa-solid fa-arrow-left" aria-label="Ir a atras"></i></x-button>
             @endif
         </div>
     </div>
 
     <div class="table-container">
         <table class="list">
+        <caption class="sr-only">Tabla con lista de los productos del pedido</caption>
             <thead>
                 <tr>
-                    <th>Artículo</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
-                    <th>Subtotal</th>
+                    <th scope="col">Artículo</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Subtotal</th>
                     @if($isEditing)
-                    <th class="botones">Acciones</th>
+                    <th scope="col" class="botones">Acciones</th>
                     @endif
                 </tr>
             </thead>

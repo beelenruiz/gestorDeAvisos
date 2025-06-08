@@ -83,7 +83,7 @@
         <div class="mini-cards">
             @foreach ($trashedArticles as $item)
             <div class="mini-card" style="background-color: #d6d9d9;">
-                <img src="{{Storage::url($item -> images[0])}}" alt="{{$item -> name}}">
+                <img src="{{Storage::url($item -> images -> first() -> path)}}" alt="{{$item -> name}}">
                 <div class="card-content">
                     <h1>{{$item -> name}}<span>{{$item -> price}}€</span></h1>
                     <div class="colores">
