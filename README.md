@@ -14,7 +14,7 @@ Este proyecto propone una aplicación web orientada a la gestión de avisos de m
 
 Para dar contexto a la aplicación, se ha creado una empresa ficticia: Solutech, especializada en el mantenimiento y reparación de impresoras para otras empresas. Además, cuenta con una tienda —tanto física como online— de mobiliario de oficina, donde se comercializan productos como sillas ergonómicas, escritorios, armarios y mesas de reuniones: todo lo esencial para equipar espacios de trabajo modernos.
 <br><br>
-
+![Captura de pantalla 2025-06-08 015235](https://github.com/user-attachments/assets/a088c4d2-e301-4179-a4f0-a6900403ce42)
 <br>
 
 ## 🌐 Proyecto en Producción
@@ -57,6 +57,44 @@ Posibilidad de crear intervenciones técnicas tanto en los avisos que tenga asig
 <br><br>
 
 ## 📖 Instalación y Configuración
+```
+# Clonar el repositorio
+git clone https://github.com/beelenruiz/gestoeDeAvisos.git
 
+# Ingresar al directorio del proyecto
+cd gestionDeArticulos
+
+#Instalar dependencias
+npm install
+composer install
+
+# Configurar variables de entorno
+cp .env.example .env
+
+# Ejecutar migraciones y seeders para generar datos iniciales
+php artisan migrate --seed
+
+#Iniciar el servidor
+composer dev  (->  ejecuta a la vez php artisan serve y npm run dev)
+```
+Accede al proyecto en tu navegador en la dirección http://localhost:8000/.
+<br><br>
 
 ## 📸 Imágenes
+![Captura de pantalla 2025-06-08 195016](https://github.com/user-attachments/assets/47e1c8d2-3571-4998-9c30-f60a1ac63773)
+![Captura de pantalla 2025-06-08 192158](https://github.com/user-attachments/assets/64f655c4-3ac0-4a5e-9dd6-823813287ca6)
+![Captura de pantalla 2025-06-08 193830](https://github.com/user-attachments/assets/360dd8d2-2eeb-4ae6-a1bf-8e158b915567)
+![Captura de pantalla 2025-06-08 030353](https://github.com/user-attachments/assets/d8e37adb-c8ff-4a96-807b-6a733c2ca815)
+
+
+## Licencia
+Este proyecto está licenciado bajo la licencia [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).  
+Esto significa que puedes compartirlo con atribución, pero no puedes usarlo con fines comerciales ni modificarlo.<br><br>
+© 2025 beelenruiz
+
+## 👥 Autora
+**Belén Ruiz Morales**,  Estudiante de 2º DAW.
+
+### ✉ Contacto
+- belenrumo2005@gmail.com
+- [mi perfil de linkedin](https://www.linkedin.com/in/belen-ruiz-499b8b275/)
